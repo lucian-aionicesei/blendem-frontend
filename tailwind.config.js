@@ -21,7 +21,22 @@ module.exports = {
         'accent-pink': '#D51880',
         'accent-gray': '#AEAEAE',
       },
+      height: {
+        '22': '5.5rem',
+      }
     },
+    fontSize: {
+      xs: '0.625rem',
+      sm: '0.75rem',
+      base: '0.85rem',
+      xl: '1rem',
+      '2xl': '1.25rem',
+      '3xl': '1.5rem',
+      '4xl': '1.75rem',
+      '5xl': '2rem',
+      '6xl': '2.5rem',
+      '7xl': '3rem'
+    }
   },
   plugins: [],
 }
