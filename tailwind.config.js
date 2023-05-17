@@ -21,9 +21,6 @@ module.exports = {
         'project-pink': '#D51880',
         'project-gray': '#AEAEAE',
       },
-      height: {
-        '22': '5.5rem',
-      }
     },
     fontSize: {
       xs: '0.625rem',
