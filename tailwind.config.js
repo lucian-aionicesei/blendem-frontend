@@ -16,10 +16,10 @@ module.exports = {
         'main': ['Montserrat', 'sans-serif']
       },
       colors: {
-        'primary-black': '#231F20',
-        'secondary-green': '#00A99D',
-        'accent-pink': '#D51880',
-        'accent-gray': '#AEAEAE',
+        'project-black': '#231F20',
+        'project-green': '#00A99D',
+        'project-pink': '#D51880',
+        'project-gray': '#AEAEAE',
       },
       height: {
         '22': '5.5rem',
