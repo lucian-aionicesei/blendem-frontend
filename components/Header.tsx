@@ -42,9 +42,28 @@ const Header = () => {
           }
     }
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
     return ( 
         <header className="fixed top-0 w-full h-0">
-            <div className=" flex justify-between items-center px-5 md:px-14 h-[5.5rem] bg-project-black z-10">
+            <div className={`flex justify-between items-center px-5 md:px-14 h-[5.5rem] z-10 ease-in duration-200 ${(currentPath === "/" && !toggleMenu) ? (isScrolled && 'bg-project-black'): ('bg-project-black')}`}>
                 <Link href="/"><img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img></Link>
                 <nav className=" hidden lg:block">
                     <ul className="flex gap-x-7 uppercase text-base items-center">

@@ -7,7 +7,8 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
       <main>
-        <img src="/mtbike.png" alt="logo"></img>
+        <img className=' h-screen w-full object-cover' src="/mtbike.png" alt="logo"></img>
+        <img className=' h-screen w-full object-cover' src="/mtbike.png" alt="logo"></img>
       </main>
   )
 }

@@ -1,8 +1,8 @@
 const Works = () => {
     return ( 
-        <div>
+        <main className=" pt-[5.5rem]">
             <h1>Contact</h1>
-        </div>
+        </main>
      );
 }
  
