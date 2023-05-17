@@ -64,7 +64,7 @@ const Header = () => {
     return ( 
         <header className="fixed top-0 w-full h-0">
             <div className={`flex justify-between items-center px-5 md:px-14 h-[5.5rem] z-10 ease-in duration-200 ${(currentPath === "/" && !toggleMenu) ? (isScrolled && 'bg-project-black'): ('bg-project-black')}`}>
-                <Link href="/"><img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img></Link>
+                <Link onClick={setMenuState} href="/"><img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img></Link>
                 <nav className=" hidden lg:block">
                     <ul className="flex gap-x-7 uppercase text-base items-center">
                         <li className="relative"><Link href="/" className={`block px-4 py-3 ${isActive('/')}`}>Home<span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></Link></li>
