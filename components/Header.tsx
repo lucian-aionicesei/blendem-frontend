@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import styles from "../styles/Header.module.css"
 import { useRouter } from 'next/router';
 
 const Header = () => {
@@ -9,7 +8,7 @@ const Header = () => {
     // console.log(currentPath);
 
     const isActive = (path: string): string => {
-        return currentPath === path ? 'border-project-green bg-project-green font-bold' : `${styles.expand}`;
+        return currentPath === path ? 'border-project-green bg-project-green font-bold' : 'group';
     };
 
     return ( 
@@ -20,10 +19,10 @@ const Header = () => {
             <img src="/logo-white.png" className=" h-11 w-fit" alt="logo"></img>
             <nav>
                 <ul className="flex gap-x-7 uppercase text-base items-center">
-                    <li className="relative flex items-end justify-center"><Link className={`px-4 py-3 z-10 ${isActive('/')}`} href="/">Home</Link><div className="absolute border-2 border-project-green pointer-events-none z-0"></div></li>
-                    <li className="relative flex items-end justify-center"><Link className={`px-4 py-3 z-10 ${isActive('/works')}`} href="/works">Works</Link><div className="absolute border-2 border-project-green pointer-events-none z-0"></div></li>
-                    <li className="relative flex items-end justify-center"><Link className={`px-4 py-3 z-10 ${isActive('/about')}`} href="/about">About</Link><div className="absolute border-2 border-project-green pointer-events-none z-0"></div></li>
-                    <li className="relative flex items-end justify-center"><Link className={`px-4 py-3 z-10 ${isActive('/contact')}`} href="/contact">Contact</Link><div className="absolute border-2 border-project-green pointer-events-none z-0"></div></li>
+                    <li className="relative"><Link href="/" className={`block px-4 py-3 ${isActive('/')}`}>Home<span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></Link></li>
+                    <li className="relative"><Link href="/works" className={`block px-4 py-3 ${isActive('/works')}`}>Works<span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></Link></li>
+                    <li className="relative"><Link href="/about" className={`block px-4 py-3 ${isActive('/about')}`}>About<span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></Link></li>
+                    <li className="relative"><Link href="/contact" className={`block px-4 py-3 ${isActive('/contact')}`}>Contact<span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></Link></li>
                 </ul>
             </nav>
         </header>
