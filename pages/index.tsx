@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import Header from '@/components/Header'
+import HeroVideo from '@/components/HeroVideo';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
       <main>
+        <HeroVideo />
         <img className=' h-screen w-full object-cover' src="/mtbike.png" alt="logo"></img>
         <img className=' h-screen w-full object-cover' src="/mtbike.png" alt="logo"></img>
       </main>
