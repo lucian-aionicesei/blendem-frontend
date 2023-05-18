@@ -10,7 +10,7 @@ const Header = () => {
     console.log(router)
 
     const isActive = (path: string): string => {
-        return currentPath === path ? 'border-project-green bg-project-green font-bold' : 'group';
+        return currentPath === path ? 'border-project-green bg-project-green font-bold' : '';
     };
 
     const [toggleMenu, setToggleMenu] = useState(false);
@@ -70,11 +70,10 @@ const Header = () => {
                 <Link onClick={() => {setToggleMenu(false);}} href="/"><img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img></Link>
                 <nav className=" hidden lg:block">
                     <ul className="flex gap-x-7 uppercase text-base items-center">
-                        <li className="relative"><Link href="/" className={`block px-4 py-3 ${isActive('/')}`}>Home<span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></Link></li>
-                        <li className="relative"><Link href="/works" className={`block px-4 py-3 ${isActive('/works')} ${isActive('/works/[slug]')}`}>Works<span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></Link></li>
-                        <li className="relative group overflow-hidden"><Link href="/works" className={`block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full ${isActive('/works')} ${isActive('/works/[slug]')}`}>Works</Link><Link href="/works" className={`block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-300 ${isActive('/works')} ${isActive('/works/[slug]')}`}>Works</Link><span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></li>
-                        <li className="relative"><Link href="/about" className={`block px-4 py-3 ${isActive('/about')}`}>About<span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></Link></li>
-                        <li className="relative"><Link href="/contact" className={`block px-4 py-3 ${isActive('/contact')}`}>Contact<span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></Link></li>
+                        <li className={`relative group overflow-hidden ${isActive('/')}`}><Link href="/" className="block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full">Home</Link><Link href="/" className="block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-300">Home</Link><span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></li>
+                        <li className={`relative group overflow-hidden ${isActive('/works')} ${isActive('/works/[slug]')}`}><Link href="/works" className="block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full">Works</Link><Link href="/works" className="block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-300">Works</Link><span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></li>
+                        <li className={`relative group overflow-hidden ${isActive('/about')}`}><Link href="/about" className="block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full">About</Link><Link href="/about" className="block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-300">About</Link><span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></li>
+                        <li className={`relative group overflow-hidden ${isActive('/contact')}`}><Link href="/contact" className="block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full">Contact</Link><Link href="/contact" className="block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-300">Contact</Link><span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></li>
                     </ul>
                 </nav>
                 <div onClick={setMenuState} className="block lg:hidden cursor-pointer py-2">
