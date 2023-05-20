@@ -9,7 +9,7 @@ export default function Category() {
 
   return (
       <main>
-        <HeroVideo />
+        <HeroVideo categoryVideo={true}/>
         <h1 className='text-5xl'>{currentPath}</h1>
       </main>
   )

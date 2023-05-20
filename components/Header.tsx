@@ -16,6 +16,18 @@ const Header = () => {
     const [toggleMenu, setToggleMenu] = useState(false);
 
     useEffect(() => {
+        const handleRouteChange = () => {
+            setToggleMenu(false);
+        };
+    
+        router.events.on('routeChangeComplete', handleRouteChange);
+    
+        return () => {
+          router.events.off('routeChangeComplete', handleRouteChange);
+        };
+      }, [router.events]);
+
+    useEffect(() => {
         const handleResize = () => {
         //   setWindowWidth(window.innerWidth);
           if (window.innerWidth > 1023) {
@@ -67,7 +79,7 @@ const Header = () => {
     return ( 
         <header className="fixed top-0 w-full h-0 z-50">
             <div className={`flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in duration-300 ${((currentPath === "/" || currentPath === '/works/[slug]') && !toggleMenu) ? (isScrolled && 'bg-project-black'): ('bg-project-black')}`}>
-                <Link onClick={() => {setToggleMenu(false);}} href="/"><img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img></Link>
+                <Link onClick={() => {setToggleMenu(false); document.body.style.overflow = "auto";}} href="/"><img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img></Link>
                 <nav className=" hidden lg:block">
                     <ul className="flex gap-x-7 uppercase text-base items-center">
                         <li className={`relative group overflow-hidden ${isActive('/')}`}><Link href="/" className="block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full">Home</Link><Link href="/" className="block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-300">Home</Link><span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span></li>
@@ -93,7 +105,7 @@ const Header = () => {
                         <Link className= {`hover:font-bold ${currentPath === "/" && 'font-bold text-project-green'}`} onClick={setMenuState} href="/">Home</Link>
                     </li>
                     <li>
-                        <Link className= {`hover:font-bold ${currentPath === "/works" && 'font-bold text-project-green'}`} onClick={setMenuState} href="/works">Works</Link>
+                        <Link className= {`hover:font-bold ${(currentPath === "/works" || currentPath === "/works/[slug]") && 'font-bold text-project-green'}`} onClick={setMenuState} href="/works">Works</Link>
                     </li>
                     <li>
                         <Link className= {`hover:font-bold ${currentPath === "/about" && 'font-bold text-project-green'}`} onClick={setMenuState} href="/about">About</Link>
