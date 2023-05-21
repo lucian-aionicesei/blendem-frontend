@@ -7,7 +7,7 @@ const Header = () => {
     const router = useRouter();
     const currentPath = router.route;
 
-    console.log(router)
+    // console.log(router)
 
     const isActive = (path: string): string => {
         return currentPath === path ? 'border-project-green bg-project-green font-bold' : '';
