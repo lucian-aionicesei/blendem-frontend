@@ -11,6 +11,7 @@ export default function Category() {
       <main>
         <HeroVideo categoryVideo={true}/>
         <h1 className='text-5xl'>{currentPath}</h1>
+        <div className='h-screen w-full'></div>
       </main>
   )
 }

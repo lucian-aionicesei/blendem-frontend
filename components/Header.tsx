@@ -58,10 +58,18 @@ const Header = () => {
     }
 
     const [isScrolled, setIsScrolled] = useState(false);
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
+      const currentScrollPos = window.pageYOffset;
+
+      setVisible(prevScrollPos > currentScrollPos);
+
+      setPrevScrollPos(currentScrollPos);
+
       if (scrollPosition > 0) {
         setIsScrolled(true);
       } else {
@@ -74,11 +82,11 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [prevScrollPos]);
 
     return ( 
         <header className="fixed top-0 w-full h-0 z-50">
-            <div className={`flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in duration-300 ${((currentPath === "/" || currentPath === '/works/[slug]') && !toggleMenu) ? (isScrolled && 'bg-project-black'): ('bg-project-black')}`}>
+            <div className={`${visible ? 'translate-y-0' : '-translate-y-full'} flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in-out duration-300 ${((currentPath === "/" || currentPath === '/works/[slug]') && !toggleMenu) ? (isScrolled && 'bg-project-black'): ('bg-project-black')}`}>
                 <Link onClick={() => {setToggleMenu(false); document.body.style.overflow = "auto";}} href="/"><img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img></Link>
                 <nav className=" hidden lg:block">
                     <ul className="flex gap-x-7 uppercase text-base items-center">
