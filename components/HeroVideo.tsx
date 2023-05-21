@@ -34,8 +34,9 @@ const HeroVideo: React.FC<HeroVideoProps> = ({categoryVideo = false}) => {
     setShowAnimation(true);
   }, []);
 
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const visibilityThreshold = useRef(0);
+  const pauseTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,11 +47,20 @@ const HeroVideo: React.FC<HeroVideoProps> = ({categoryVideo = false}) => {
       const videoBottom = rect.bottom;
 
       if (videoBottom - visibilityThreshold.current > 0 && videoTop < window.innerHeight) {
+        if (pauseTimeout.current) {
+          clearTimeout(pauseTimeout.current);
+          pauseTimeout.current = null;
+        }
         videoRef.current.play();
         setPlayVideo(true);
       } else {
-        videoRef.current.pause();
-        setPlayVideo(false);
+        if (!pauseTimeout.current) {
+          pauseTimeout.current = setTimeout(() => {
+            videoRef.current.pause();
+            pauseTimeout.current = null;
+          }, 500); // Adjust the delay time (in milliseconds) as per your requirement
+        }
+        setPlayVideo(false)
       }
     };
 
@@ -63,6 +73,10 @@ const HeroVideo: React.FC<HeroVideoProps> = ({categoryVideo = false}) => {
     // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (pauseTimeout.current) {
+        clearTimeout(pauseTimeout.current);
+        pauseTimeout.current = null;
+      }
     };
   }, []);
 
