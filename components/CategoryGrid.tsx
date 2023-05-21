@@ -59,9 +59,9 @@ const CategoryGrid = () => {
     return ( 
         <section onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove} ref={sectionRef} className="overflow-hidden cursor-pointer mx-5 md:mx-14 grid grid-cols-2 font-bold relative">
+        onMouseMove={handleMouseMove} ref={sectionRef} className="overflow-hidden cursor-pointer mx-5 md:mx-14 lg:grid grid-cols-2 font-bold relative">
             <div style={{ transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)` }} className="pointer-events-none absolute z-40 ease-out duration-200"><div className={` ${isHovering ? 'scale-100' : 'scale-0'} h-16 w-16 border-project-green bg-black/40 border-2 rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2 ease-in-out duration-200`}><p className="text-base font-bold">Watch</p></div></div>
-            <article onMouseEnter={handleArticleEnter} onMouseLeave={handleArticleLeave} className=" group aspect-video relative text-5xl uppercase flex items-center justify-center overflow-hidden">
+            <article onMouseEnter={handleArticleEnter} onMouseLeave={handleArticleLeave} className=" group aspect-video relative uppercase flex items-center justify-center overflow-hidden">
                 <video muted loop className=' w-full h-full object-cover' src="/hero-video.mp4"></video>
                 <div className=" pointer-events-none absolute top-0 left-0 h-full w-full ease-in-out duration-500 group-hover:opacity-0">
                     <img className="h-full w-full object-cover" src="/documentary.png" alt="documentary" />
@@ -69,7 +69,7 @@ const CategoryGrid = () => {
                 </div>
                 <div className=" pointer-events-none absolute border-2 border-project-green flex items-center justify-center group-hover:border-project-pink group-hover:w-full group-hover:h-full transition-all">
                     <div className="relative overflow-hidden">
-                        <h2 className="px-6 py-4 translate-y-0 group-hover:-translate-y-full ease-in-out duration-500">Documentary</h2>
+                        <h2 className=" text-5xl xl:text-6xl 2xl:text-7xl px-6 py-4 translate-y-0 group-hover:-translate-y-full ease-in-out duration-500">Documentary</h2>
                     </div>
                 </div>
             </article>

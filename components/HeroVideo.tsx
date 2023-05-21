@@ -18,9 +18,6 @@ const HeroVideo: React.FC<HeroVideoProps> = ({categoryVideo = false}) => {
       }
     };
 
-    // Set the initial window width
-    // setWindowWidth(window.innerWidth);
-
     // Attach event listener for window resize
     window.addEventListener('resize', handleResize);
 
@@ -56,9 +53,11 @@ const HeroVideo: React.FC<HeroVideoProps> = ({categoryVideo = false}) => {
       } else {
         if (!pauseTimeout.current) {
           pauseTimeout.current = setTimeout(() => {
-            videoRef.current.pause();
-            pauseTimeout.current = null;
-          }, 500); // Adjust the delay time (in milliseconds) as per your requirement
+            if (videoRef.current) {
+              videoRef.current.pause();
+              pauseTimeout.current = null;
+            }
+          }, 300); // Adjust the delay time (in milliseconds) as per your requirement
         }
         setPlayVideo(false)
       }
