@@ -23,7 +23,7 @@ const CategoryGrid = () => {
 
   const handleScroll = () => {
     // setScrollPosition({ x: window.pageXOffset, y: window.pageYOffset });
-    console.log(window.scrollY)
+    // console.log(window.scrollY)
   };
 
   useEffect(() => {
@@ -49,8 +49,8 @@ const CategoryGrid = () => {
     return ( 
         <section onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove} ref={sectionRef} className="overflow-hidden cursor-none mx-5 md:mx-14 grid grid-cols-2 font-bold relative">
-            <div style={{ transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)` }} className="pointer-events-none absolute z-40 ease-in-out"><div className=" h-16 w-16 bg-project-green rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2"><p className="text-base">Watch</p></div></div>
+        onMouseMove={handleMouseMove} ref={sectionRef} className="overflow-hidden cursor-pointer mx-5 md:mx-14 grid grid-cols-2 font-bold relative">
+            <div style={{ transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)` }} className="pointer-events-none absolute z-40 ease-out duration-200"><div className={` ${isHovering ? 'scale-100' : 'scale-0'} h-16 w-16 border-project-green bg-black/40 border-2 rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2 ease-in-out duration-200`}><p className="text-base font-bold">Watch</p></div></div>
             <article className=" group aspect-video relative text-5xl uppercase flex items-center justify-center overflow-hidden">
                 <video autoPlay muted loop className=' w-full h-full object-cover' src="/hero-video.mp4"></video>
                 <div className="absolute top-0 left-0 h-full w-full ease-in-out duration-500 group-hover:opacity-0">
