@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import { useInView } from 'react-intersection-observer';
 import Link from "next/link";
 
 const CategoryGrid = () => {
@@ -87,6 +88,22 @@ const CategoryGrid = () => {
     };
   }, []);
 
+  // play video when it reaches mis screen
+  
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoElement, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5, // Adjust the threshold to 0.5 (50% visibility)
+  });
+
+  useEffect(() => {
+    if (inView) {
+      videoRef.current?.play();
+    } else {
+      videoRef.current?.pause();
+    }
+  }, [inView]);
+
     return ( 
         <section onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -98,7 +115,7 @@ const CategoryGrid = () => {
                     <p>Documentary</p>
                     <Link className="" href="/works/documentary">Watch</Link>
                 </section> */}
-                <div className=" pointer-events-none absolute top-0 left-0 h-full w-full ease-in-out duration-500 group-hover:opacity-0">
+                <div className=" hidden pointer-events-none absolute top-0 left-0 h-full w-full ease-in-out duration-500 group-hover:opacity-0">
                     <img className="h-full w-full object-cover" src="/documentary.png" alt="documentary" />
                     <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
                 </div>
