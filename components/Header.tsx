@@ -2,12 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react";
+import useScreenWidth from '../hooks/useScreenWidth';
 
 const Header = () => {
     const router = useRouter();
     const currentPath = router.route;
-
-    // console.log(router)
+    const screenWidth = useScreenWidth();
 
     const isActive = (path: string): string => {
         return currentPath === path ? 'border-project-green bg-project-green font-bold' : '';
@@ -27,26 +27,13 @@ const Header = () => {
         };
       }, [router.events]);
 
-    useEffect(() => {
-        const handleResize = () => {
-        //   setWindowWidth(window.innerWidth);
-          if (window.innerWidth > 1023) {
-            setToggleMenu(false);
-            document.body.style.overflow = "auto";
-          }
-        };
-    
-        // Set the initial window width
-        // setWindowWidth(window.innerWidth);
-    
-        // Attach event listener for window resize
-        window.addEventListener('resize', handleResize);
-    
-        // Clean up the event listener on component unmount
-        return () => {
-          window.removeEventListener('resize', handleResize);
-        };
-      }, []);
+      useEffect(() => {
+        if (screenWidth > 1023) {
+          // console.log("close the menu")
+          setToggleMenu(false);
+          document.body.style.overflow = "auto";
+        }
+      }, [screenWidth]);
 
     function setMenuState ():any {
         setToggleMenu(() => !toggleMenu);
