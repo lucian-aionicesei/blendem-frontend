@@ -16,12 +16,24 @@ module.exports = {
         'main': ['Montserrat', 'sans-serif']
       },
       colors: {
-        'primary-black': '#231F20',
-        'secondary-green': '#00A99D',
-        'accent-pink': '#D51880',
-        'accent-gray': '#AEAEAE',
+        'project-black': '#231F20',
+        'project-green': '#00A99D',
+        'project-pink': '#D51880',
+        'project-gray': '#AEAEAE',
       },
     },
+    fontSize: {
+      xs: '0.625rem',
+      sm: '0.75rem',
+      base: '0.85rem',
+      xl: '1rem',
+      '2xl': '1.25rem',
+      '3xl': '1.5rem',
+      '4xl': '1.75rem',
+      '5xl': '2rem',
+      '6xl': '2.5rem',
+      '7xl': '3rem'
+    }
   },
   plugins: [],
 }
