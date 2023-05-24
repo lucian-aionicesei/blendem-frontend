@@ -1,24 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
-interface HeroVideoProps {
-  categoryVideo: Boolean;
-}
-
-const HeroVideo: React.FC<HeroVideoProps> = ({categoryVideo = false}) => {
+const HeroVideo = ({categoryVideo = false}) => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [phoneScreen, setPhoneScreen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-    //   setWindowWidth(window.innerWidth);
       if (window.innerWidth < 640) {
         setPhoneScreen(true);
-        // document.body.style.overflow = "auto";
       }
     };
-
-    // Set the initial window width
-    // setWindowWidth(window.innerWidth);
 
     // Attach event listener for window resize
     window.addEventListener('resize', handleResize);
