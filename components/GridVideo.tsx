@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRef, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import useScreenWidth from '../hooks/useScreenWidth';
+import React, {MouseEvent} from 'react';
 
 type GridVideoProps = {
     videoUrl: string;
@@ -10,6 +11,7 @@ type GridVideoProps = {
   };
 
 const GridVideo : React.FC<GridVideoProps> = ({ videoUrl, imgUrl, category }) => {
+  
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const videoElement = videoRef.current;
     const [smallScreen, setSmallScreen] = useState(false);
@@ -18,23 +20,19 @@ const GridVideo : React.FC<GridVideoProps> = ({ videoUrl, imgUrl, category }) =>
     useEffect(() => {
         if (screenWidth < 1024) {
           setSmallScreen(true);
-        //   console.log("VIDEO component small")
         } else {
-            // console.log("VIDEO component big")
             setPlaying(false);
             setSmallScreen(false);
         }
       }, [screenWidth]);
     
-    const handleArticleEnter = (e:any) => {
-        // console.log("play the vide")
+    const handleArticleEnter = () => {
         if(!smallScreen){
             videoElement?.play();
         }
       };
     
-    const handleArticleLeave = (e:any) => {
-        // console.log("pause the vide")
+    const handleArticleLeave = () => {
         if(!smallScreen){
             videoElement?.pause();
         }

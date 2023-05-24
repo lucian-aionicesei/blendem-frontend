@@ -4,8 +4,9 @@ import { useInView } from 'react-intersection-observer';
 import Link from "next/link";
 import GridVideo from "./GridVideo";
 import useScreenWidth from '../hooks/useScreenWidth';
+import React, {MouseEvent} from 'react';
 
-const CategoryGrid = () => {
+const CategoryGrid: React.FC = () => {
     const [isHovering, setIsHovering] = useState(false);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -22,7 +23,7 @@ const CategoryGrid = () => {
     setIsHovering(false);
   };
 
-  const handleMouseMove = (e:any) => {
+  const handleMouseMove = (e: MouseEvent): void => {
     setIsHovering(true);
     // console.log(e , e.pageY - sectionPosition.top)
     setCursorPosition({ x: e.pageX - sectionPosition.left, y: e.pageY - sectionPosition.top });
