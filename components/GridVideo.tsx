@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRef, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import useScreenWidth from '../hooks/useScreenWidth';
-import React, {MouseEvent} from 'react';
+import React from 'react';
 
 type GridVideoProps = {
     videoUrl: string;
