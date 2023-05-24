@@ -31,7 +31,7 @@ const Header = () => {
     }
 
     useEffect(() => {
-      if (toggleMenu) {
+      if (!toggleMenu) {
         document.body.style.overflow = "auto";
       } else {
         document.body.style.overflow = "hidden";
