@@ -8,25 +8,38 @@ const Header = () => {
     const currentPath = router.pathname;
 
     const [toggleMenu, setToggleMenu] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
 
     useEffect(() => {
         const handleResize = () => {
-        //   setWindowWidth(window.innerWidth);
           if (window.innerWidth > 1023) {
             setToggleMenu(false)
           }
         };
-    
-        // Attach event listener for window resize
-        window.addEventListener("resize", handleResize);
-    
-        // Clean up the event listener on component unmount
-        return () => {
-          window.removeEventListener("resize", handleResize);
-        };
+
+		const handleScroll = () => {
+			const scrollPosition = window.scrollY;
+			if (scrollPosition > 0) {
+			  setIsScrolled(true);
+			} else {
+			  setIsScrolled(false);
+			}
+		  };
+	  
+          // Attach event listener for window resize and scroll
+		  window.addEventListener("resize", handleResize);
+		  window.addEventListener("scroll", handleScroll);
+
+          // Clean up the event listener on component unmount
+		  return () => {
+			window.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("resize", handleResize);
+
+		  };
       }, []);
 
-    function setMenuState ():void {
+    function setMenuState() {
         setToggleMenu(() => !toggleMenu);
     }
 
@@ -38,29 +51,12 @@ const Header = () => {
       }
     }, [toggleMenu])
 
-    const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
     return ( 
         <header className="fixed top-0 w-full h-0">
             <div className={`flex justify-between items-center px-5 md:px-14 h-[5.5rem] z-10 ease-in duration-200 ${(currentPath === "/" && !toggleMenu) ? (isScrolled && "bg-project-black"): ("bg-project-black")}`}>
-                <Link onClick={setMenuState} href="/"><img src="/logo-white.png" className="h-10 w-fit" alt="logo"></img></Link>
+                <Link onClick={() => toggleMenu && setMenuState} href="/"><img src="/logo-white.png" className="h-10 w-fit" alt="logo"></img></Link>
                 <nav className="hidden lg:block">
                     <ul className="flex gap-x-7 uppercase text-base items-center">
                         <HeaderLink path="/" name="Home"/>
