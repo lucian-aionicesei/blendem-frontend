@@ -1,5 +1,4 @@
 import HeroVideo from "@/components/HeroVideo";
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 export default function Category() {
@@ -11,6 +10,7 @@ export default function Category() {
     <main>
       <HeroVideo categoryVideo={true} />
       <h1 className="text-5xl">{currentPath}</h1>
+      <div className="h-screen w-full"></div>
     </main>
   );
 }

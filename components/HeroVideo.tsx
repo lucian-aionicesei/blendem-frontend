@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const HeroVideo = ({ categoryVideo = false }) => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [phoneScreen, setPhoneScreen] = useState(false);
+  const [playVideo, setPlayVideo] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,10 +25,63 @@ const HeroVideo = ({ categoryVideo = false }) => {
     setShowAnimation(true);
   }, []);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const visibilityThreshold = useRef(0);
+  const pauseTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!videoRef.current) return;
+
+      const rect = videoRef.current.getBoundingClientRect();
+      const videoTop = rect.top;
+      const videoBottom = rect.bottom;
+
+      if (
+        videoBottom - visibilityThreshold.current > 0 &&
+        videoTop < window.innerHeight
+      ) {
+        if (pauseTimeout.current) {
+          clearTimeout(pauseTimeout.current);
+          pauseTimeout.current = null;
+        }
+        videoRef.current.play();
+        setPlayVideo(true);
+      } else {
+        if (!pauseTimeout.current) {
+          pauseTimeout.current = setTimeout(() => {
+            if (videoRef.current) {
+              videoRef.current.pause();
+              pauseTimeout.current = null;
+            }
+          }, 300); // Adjust the delay time (in milliseconds) as per your requirement
+        }
+        setPlayVideo(false);
+      }
+    };
+
+    // Calculate the visibility threshold
+    visibilityThreshold.current = window.innerHeight * (1 / 2.5);
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (pauseTimeout.current) {
+        clearTimeout(pauseTimeout.current);
+        pauseTimeout.current = null;
+      }
+    };
+  }, []);
+
   return (
     <section className=" relative">
       {phoneScreen ? (
         <video
+          ref={videoRef}
+          autoPlay
           muted
           loop
           className=" w-full h-screen object-cover"
@@ -35,6 +89,8 @@ const HeroVideo = ({ categoryVideo = false }) => {
         ></video>
       ) : (
         <video
+          ref={videoRef}
+          autoPlay
           muted
           loop
           className=" w-full h-screen object-cover"
@@ -42,6 +98,13 @@ const HeroVideo = ({ categoryVideo = false }) => {
         ></video>
       )}
       <div className=" absolute top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center">
+        <img
+          className={`w-full h-full absolute object-cover ease-in-out duration-300 ${
+            playVideo ? "opacity-0" : "opacity-100"
+          }`}
+          src="/mtbike.png"
+          alt=""
+        />
         {categoryVideo && (
           <article className=" group text-5xl sm:text-7xl uppercase font-extrabold bg-black/60 px-10 flex items-center justify-center relative overflow-hidden w-full sm:w-auto">
             <h1

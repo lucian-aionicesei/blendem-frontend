@@ -1,47 +1,38 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import useScreenWidth from "../hooks/useScreenWidth";
 import HeaderLink from "./HeaderLink";
 
 const Header = () => {
   const router = useRouter();
   const currentPath = router.route;
-
-  console.log(router);
+  const screenWidth = useScreenWidth();
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1023) {
-        setToggleMenu(false);
-      }
+    const handleRouteChange = () => {
+      setToggleMenu(false);
     };
 
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    router.events.on("routeChangeComplete", handleRouteChange);
 
-    // Attach event listener for window resize and scroll
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener on component unmount
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
+      router.events.off("routeChangeComplete", handleRouteChange);
     };
-  }, []);
+  }, [router.events]);
 
-  function setMenuState() {
-    setToggleMenu(() => !toggleMenu);
-  }
+  useEffect(() => {
+    if (screenWidth > 1023) {
+      // console.log("close the menu")
+      setToggleMenu(false);
+      document.body.style.overflow = "auto";
+    }
+  }, [screenWidth]);
 
   useEffect(() => {
     if (!toggleMenu) {
@@ -51,10 +42,39 @@ const Header = () => {
     }
   }, [toggleMenu]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const currentScrollPos = window.pageYOffset;
+
+      setVisible(prevScrollPos > currentScrollPos);
+
+      setPrevScrollPos(currentScrollPos);
+
+      if (scrollPosition > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
+  function setMenuState() {
+    setToggleMenu(() => !toggleMenu);
+  }
+
   return (
     <header className="fixed top-0 w-full h-0 z-50">
       <div
-        className={`flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in duration-300 ${
+        className={`${
+          visible ? "translate-y-0" : "-translate-y-full"
+        } flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in-out duration-300 ${
           (currentPath === "/" || currentPath === "/works/[slug]") &&
           !toggleMenu
             ? isScrolled && "bg-project-black"

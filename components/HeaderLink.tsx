@@ -18,7 +18,7 @@ const HeaderLink = ({
   const currentPath = router.pathname;
 
   const isActive =
-    currentPath === path
+    currentPath === path || currentPath.includes(`${path}/[slug]`)
       ? "border-project-green bg-project-green font-bold"
       : "group";
 
@@ -28,7 +28,7 @@ const HeaderLink = ({
         <li className={`relative group overflow-hidden ${isActive}`}>
           <Link
             href={path}
-            className={`block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full`}
+            className="block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full"
           >
             {name}
           </Link>
