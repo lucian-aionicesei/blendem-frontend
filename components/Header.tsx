@@ -10,6 +10,9 @@ const Header = () => {
   const screenWidth = useScreenWidth();
 
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const handleRouteChange = () => {
@@ -31,10 +34,6 @@ const Header = () => {
     }
   }, [screenWidth]);
 
-  function setMenuState(): void {
-    setToggleMenu(() => !toggleMenu);
-  }
-
   useEffect(() => {
     if (!toggleMenu) {
       document.body.style.overflow = "auto";
@@ -42,10 +41,6 @@ const Header = () => {
       document.body.style.overflow = "hidden";
     }
   }, [toggleMenu]);
-
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,6 +64,10 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [prevScrollPos]);
+
+  function setMenuState() {
+    setToggleMenu(() => !toggleMenu);
+  }
 
   return (
     <header className="fixed top-0 w-full h-0 z-50">
