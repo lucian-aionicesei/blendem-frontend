@@ -58,7 +58,7 @@ const Header = () => {
             : "bg-project-black"
         }`}
       >
-        <Link onClick={() => toggleMenu && setMenuState} href="/">
+        <Link onClick={() => toggleMenu && setMenuState()} href="/">
           <img src="/logo-white.png" className="h-10 w-fit" alt="logo"></img>
         </Link>
         <nav className="hidden lg:block">
