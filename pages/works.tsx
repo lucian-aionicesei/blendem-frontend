@@ -1,6 +1,6 @@
 const Works = () => {
   return (
-    <div>
+    <main className=" pt-[5.5rem]">
       <h1>Works</h1>
       <p>
         Lorem ipsum dolor sit amet auctor justo pretium cras lectus justo ac
@@ -10,7 +10,7 @@ const Works = () => {
         sapien sodales dictumst ac blandit ac. Tempor leo semper id in
         incididunt arcu feugiat bibendum est urna cursus blandit.
       </p>
-    </div>
+    </main>
   );
 };
 
