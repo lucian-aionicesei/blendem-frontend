@@ -5,7 +5,9 @@ import HeaderLink from "./HeaderLink";
 
 const Header = () => {
   const router = useRouter();
-  const currentPath = router.pathname;
+  const currentPath = router.route;
+
+  console.log(router);
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,18 +52,25 @@ const Header = () => {
   }, [toggleMenu]);
 
   return (
-    <header className="fixed top-0 w-full h-0">
+    <header className="fixed top-0 w-full h-0 z-50">
       <div
-        className={`flex justify-between items-center px-5 md:px-14 h-[5.5rem] z-10 ease-in duration-200 ${
-          currentPath === "/" && !toggleMenu
+        className={`flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in duration-300 ${
+          (currentPath === "/" || currentPath === "/works/[slug]") &&
+          !toggleMenu
             ? isScrolled && "bg-project-black"
             : "bg-project-black"
         }`}
       >
-        <Link onClick={() => toggleMenu && setMenuState()} href="/">
-          <img src="/logo-white.png" className="h-10 w-fit" alt="logo"></img>
+        <Link
+          onClick={() => {
+            setToggleMenu(false);
+            document.body.style.overflow = "auto";
+          }}
+          href="/"
+        >
+          <img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img>
         </Link>
-        <nav className="hidden lg:block">
+        <nav className=" hidden lg:block">
           <ul className="flex gap-x-7 uppercase text-base items-center">
             <HeaderLink path="/" name="Home" />
             <HeaderLink path="/works" name="Works" />
@@ -107,7 +116,7 @@ const Header = () => {
         </div>
       </div>
       <nav
-        className={`backdrop-blur-md bg-black/30 h-screen w-full ml-auto pb-[5.5rem] ease-in-out duration-500 ${
+        className={`backdrop-blur-md bg-black/30 h-screen w-full ml-auto pb-20 ease-in-out duration-500 ${
           toggleMenu ? "translate-x-0" : "translate-x-full"
         } z-10`}
       >
