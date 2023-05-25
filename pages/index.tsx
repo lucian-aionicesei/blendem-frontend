@@ -1,15 +1,23 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import HeroVideo from '@/components/HeroVideo';
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import HeroVideo from "@/components/HeroVideo";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-      <main>
-        <HeroVideo categoryVideo={false} />
-        <img className=' h-screen w-full object-cover' src="/mtbike.png" alt="logo"></img>
-        <img className=' h-screen w-full object-cover' src="/mtbike.png" alt="logo"></img>
-      </main>
-  )
+    <main>
+      <HeroVideo categoryVideo={false} />
+      <img
+        className=" h-screen w-full object-cover"
+        src="/mtbike.png"
+        alt="logo"
+      ></img>
+      <img
+        className=" h-screen w-full object-cover"
+        src="/mtbike.png"
+        alt="logo"
+      ></img>
+    </main>
+  );
 }
