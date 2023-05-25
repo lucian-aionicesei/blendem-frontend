@@ -10,38 +10,36 @@ const Header = () => {
   console.log(router);
 
   const [toggleMenu, setToggleMenu] = useState(false);
-
-  useEffect(() => {
-    const handleRouteChange = () => {
-      setToggleMenu(false);
-    };
-
-    router.events.on("routeChangeComplete", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      //   setWindowWidth(window.innerWidth);
       if (window.innerWidth > 1023) {
         setToggleMenu(false);
-        document.body.style.overflow = "auto";
       }
     };
 
-    // Attach event listener for window resize
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    // Attach event listener for window resize and scroll
     window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
 
     // Clean up the event listener on component unmount
     return () => {
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  function setMenuState(): void {
+  function setMenuState() {
     setToggleMenu(() => !toggleMenu);
   }
 
@@ -52,25 +50,6 @@ const Header = () => {
       document.body.style.overflow = "hidden";
     }
   }, [toggleMenu]);
-
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <header className="fixed top-0 w-full h-0 z-50">

@@ -8,28 +8,27 @@ interface MyComponentProps {
   setMenuState?: () => void;
 }
 
-const HeaderLink: React.FC<MyComponentProps> = ({
+const HeaderLink = ({
   path,
   name,
   burgerMenu = false,
   setMenuState,
-}) => {
+}: MyComponentProps) => {
   const router = useRouter();
   const currentPath = router.pathname;
 
-  const isActive = () => {
-    return currentPath === path || currentPath.includes(`${path}/[slug]`)
+  const isActive =
+    currentPath === path
       ? "border-project-green bg-project-green font-bold"
       : "group";
-  };
 
   return (
     <>
       {!burgerMenu ? (
-        <li className={`relative group overflow-hidden ${isActive()}`}>
+        <li className={`relative group overflow-hidden ${isActive}`}>
           <Link
             href={path}
-            className="block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full"
+            className={`block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full`}
           >
             {name}
           </Link>
