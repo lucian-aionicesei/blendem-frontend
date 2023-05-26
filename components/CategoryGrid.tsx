@@ -1,7 +1,4 @@
-import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
-import Link from "next/link";
 import GridVideo from "./GridVideo";
 import useScreenWidth from "../hooks/useScreenWidth";
 import React, { MouseEvent } from "react";
@@ -9,7 +6,6 @@ import React, { MouseEvent } from "react";
 const CategoryGrid: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [sectionPosition, setSectionPosition] = useState({ top: 0, left: 0 });
   const sectionRef = useRef<HTMLInputElement>(null);
   const [smallScreen, setSmallScreen] = useState(false);

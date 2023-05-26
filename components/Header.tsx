@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useScreenWidth from "../hooks/useScreenWidth";
+import Image from "next/image";
 import HeaderLink from "./HeaderLink";
 
 const Header = () => {
@@ -88,7 +89,12 @@ const Header = () => {
           }}
           href="/"
         >
-          <img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img>
+          <Image
+            src="/logo-white.png"
+            width={210}
+            height={70}
+            alt="logo"
+          ></Image>
         </Link>
         <nav className=" hidden lg:block">
           <ul className="flex gap-x-7 uppercase text-base items-center">

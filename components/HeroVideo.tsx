@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 
 const HeroVideo = ({ categoryVideo = false }) => {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -98,13 +99,14 @@ const HeroVideo = ({ categoryVideo = false }) => {
         ></video>
       )}
       <div className=" absolute top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center">
-        <img
-          className={`w-full h-full absolute object-cover ease-in-out duration-300 ${
+        <Image
+          className={`absolute ease-in-out duration-300 ${
             playVideo ? "opacity-0" : "opacity-100"
           }`}
           src="/mtbike.png"
-          alt=""
-        />
+          fill={true}
+          alt="video reel"
+        ></Image>
         {categoryVideo && (
           <article className=" group text-5xl sm:text-7xl uppercase font-extrabold bg-black/60 px-10 flex items-center justify-center relative overflow-hidden w-full sm:w-auto">
             <h1
