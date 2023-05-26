@@ -100,7 +100,7 @@ const HeroVideo = ({ categoryVideo = false }) => {
       )}
       <div className=" absolute top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center">
         <Image
-          className={`absolute ease-in-out duration-300 ${
+          className={`absolute ease-in-out object-cover duration-300 ${
             playVideo ? "opacity-0" : "opacity-100"
           }`}
           src="/mtbike.png"
@@ -116,13 +116,13 @@ const HeroVideo = ({ categoryVideo = false }) => {
             >
               Documentary
             </h1>
-            <p
+            <h2
               className={`h-full py-7 absolute ease-in-out duration-300 translate-y-full group-hover:-translate-y-0 ${
                 showAnimation ? "translate-y-full" : "-translate-y-0"
               }`}
             >
               Documentary
-            </p>
+            </h2>
           </article>
         )}
       </div>

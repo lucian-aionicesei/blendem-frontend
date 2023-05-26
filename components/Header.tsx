@@ -91,9 +91,10 @@ const Header = () => {
         >
           <Image
             src="/logo-white.png"
-            width={210}
-            height={70}
+            width={208}
+            height={42}
             alt="logo"
+            priority={true}
           ></Image>
         </Link>
         <nav className=" hidden lg:block">

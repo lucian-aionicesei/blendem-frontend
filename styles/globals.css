@@ -9,6 +9,10 @@ body {
   @apply bg-project-black text-white;
 }
 
+p {
+  @apply text-base leading-loose;
+}
+
 /* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
