@@ -7,8 +7,9 @@ const CategoryGrid: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [sectionPosition, setSectionPosition] = useState({ top: 0, left: 0 });
-  const sectionRef = useRef<HTMLInputElement>(null);
+  const [scrollTop, setScrollTop] = useState(0);
   const [smallScreen, setSmallScreen] = useState(false);
+  const sectionRef = useRef<HTMLInputElement>(null);
   const screenWidth = useScreenWidth();
 
   const handleMouseEnter = () => {
@@ -20,27 +21,33 @@ const CategoryGrid: React.FC = () => {
   };
 
   const handleMouseMove = (e: MouseEvent): void => {
+    // console.log(e);
+    // console.log("X:" + e.pageX, "Y" + e.pageY);
+    // console.log(sectionPosition.top, sectionPosition.left);
     setIsHovering(true);
     setCursorPosition({
       x: e.pageX - sectionPosition.left,
-      y: e.pageY - sectionPosition.top,
+      y: e.pageY - (sectionPosition.top + scrollTop),
     });
   };
 
   const handleScroll = () => {
     setIsHovering(false);
+    const newScrollTop =
+      window.pageYOffset || document.documentElement.scrollTop;
+    setScrollTop(newScrollTop);
   };
 
   useEffect(() => {
     const sectionElement = sectionRef.current;
+    // console.log(scrollTop);
 
     if (sectionElement) {
       // Get the position of the section element
-      const { top, left } = sectionElement.getBoundingClientRect();
-
-      setSectionPosition({ top: top, left: left });
+      const { y, x } = sectionElement.getBoundingClientRect();
+      setSectionPosition({ top: y, left: x });
     }
-  }, []);
+  }, [scrollTop]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -67,7 +74,7 @@ const CategoryGrid: React.FC = () => {
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
         ref={sectionRef}
-        className="overflow-hidden cursor-pointer lg:grid grid-cols-2 font-bold relative"
+        className="overflow-hidden lg:grid grid-cols-2 font-bold relative"
       >
         {!smallScreen && (
           <div

@@ -84,7 +84,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
       </Link>
       <section className=" absolute bottom-0 w-full flex lg:hidden justify-between items-center p-5 sm:p-8 overflow-hidden">
         <p
-          className={`uppercase text-xl sm:text-2xl ease-in-out duration-500 ${
+          className={`uppercase font-extrabold text-xl sm:text-2xl ease-in-out duration-500 ${
             isPlaying
               ? "translate-y-0 opacity-100"
               : "translate-y-full opacity-0"
@@ -110,12 +110,12 @@ const GridVideo: React.FC<GridVideoProps> = ({
           sizes="(min-width: 1023px) 50vw, 100vw"
           alt={`${category} category`}
         ></Image>
-        <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
       </div>
       <div className=" pointer-events-none absolute lg:border-2 border-project-green flex items-center justify-center group-hover:border-project-pink group-hover:w-full group-hover:h-full transition-all">
         <div className="relative overflow-hidden">
           <h2
-            className={`uppercase text-3xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl px-6 py-4 ease-in-out duration-500 ${
+            className={`uppercase font-extrabold text-3xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl px-6 py-4 ease-in-out duration-500 ${
               isPlaying
                 ? "-translate-y-full"
                 : !smallScreen && "group-hover:-translate-y-full translate-y-0"

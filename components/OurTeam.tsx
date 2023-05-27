@@ -1,22 +1,18 @@
 import Image from "next/image";
+import LinkButton from "./LinkButton";
 
-const OurTeam = () => {
+const OurTeam = ({ text, imgUrl }: { text: string; imgUrl: string }) => {
   return (
-    <section className="sm:mx-5 md:mx-14 grid grid-cols-12">
-      <div className="row-start-1 col-start-2 col-span-6 aspect-video h-fit relative">
-        <Image src="/our-team.png" fill={true} alt="our team"></Image>
+    <section className="sm:mx-5 md:mx-14 my-9 sm:my-16 lg:grid grid-cols-12 flex flex-col justify-center">
+      <div className="row-start-1 col-start-1 xl:col-start-2 col-span-7 xl:col-span-6 aspect-video h-fit relative z-10">
+        <Image src={imgUrl} fill={true} alt="our team"></Image>
       </div>
-      <div className="row-start-1 col-start-3 col-span-9 w-full h-full bg-project-dark-gray"></div>
-      <article className=" col-end-12 col-span-4 row-start-1 flex flex-col justify-center p-10">
+      <div className=" hidden lg:block row-start-1 col-end-13 xl:col-end-12 col-span-10 xl:col-span-9 w-full h-full bg-project-dark-gray translate-y-10"></div>
+      <article className=" bg-project-dark-gray lg:bg-none col-end-13 xl:col-end-12 col-span-5 xl:col-span-4 row-start-1 flex flex-col justify-center px-5 py-7 sm:p-10 lg:translate-y-10">
         <h1 className=" text-2xl font-bold mb-3">Our team</h1>
-        <p className="my-5">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
-        <div className=" bg-project-green font-bold px-6 py-4 w-fit text-base">
-          Read more
+        <p className="mt-t mb-8 lg:my-5">{text}</p>
+        <div className="ml-auto mr-auto lg:ml-auto lg:mr-0 pt-4w">
+          <LinkButton path="/about" />
         </div>
       </article>
     </section>
