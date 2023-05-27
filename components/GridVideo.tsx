@@ -104,7 +104,12 @@ const GridVideo: React.FC<GridVideoProps> = ({
           isPlaying ? "opacity-0" : !smallScreen && "group-hover:opacity-0"
         }`}
       >
-        <Image src={imgUrl} fill={true} alt={`${category} category`}></Image>
+        <Image
+          src={imgUrl}
+          fill={true}
+          sizes="(min-width: 1023px) 50vw, 100vw"
+          alt={`${category} category`}
+        ></Image>
         <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
       </div>
       <div className=" pointer-events-none absolute lg:border-2 border-project-green flex items-center justify-center group-hover:border-project-pink group-hover:w-full group-hover:h-full transition-all">

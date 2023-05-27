@@ -5,6 +5,9 @@ const HeroVideo = ({ categoryVideo = false }) => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [phoneScreen, setPhoneScreen] = useState(false);
   const [playVideo, setPlayVideo] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const visibilityThreshold = useRef(0);
+  const pauseTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,10 +28,6 @@ const HeroVideo = ({ categoryVideo = false }) => {
   useEffect(() => {
     setShowAnimation(true);
   }, []);
-
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const visibilityThreshold = useRef(0);
-  const pauseTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -105,6 +104,7 @@ const HeroVideo = ({ categoryVideo = false }) => {
           }`}
           src="/mtbike.png"
           fill={true}
+          priority={true}
           alt="video reel"
         ></Image>
         {categoryVideo && (

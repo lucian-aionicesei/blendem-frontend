@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useScreenWidth from "../hooks/useScreenWidth";
 import Image from "next/image";
+import siteLogo from "../public/logo-white.png";
 import HeaderLink from "./HeaderLink";
 
 const Header = () => {
@@ -90,9 +91,10 @@ const Header = () => {
           href="/"
         >
           <Image
-            src="/logo-white.png"
-            width={208}
-            height={42}
+            src={siteLogo}
+            width={414}
+            height={85}
+            className=" h-10 w-auto"
             alt="logo"
             priority={true}
           ></Image>

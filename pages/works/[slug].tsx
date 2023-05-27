@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 export default function Category() {
   const router = useRouter();
   const currentPath = router.query.slug;
-  console.log(router.route);
+  // console.log(router.route);
 
   return (
     <main>
