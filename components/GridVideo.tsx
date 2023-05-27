@@ -21,15 +21,6 @@ const GridVideo: React.FC<GridVideoProps> = ({
   const [smallScreen, setSmallScreen] = useState(false);
   const screenWidth = useScreenWidth();
 
-  useEffect(() => {
-    if (screenWidth < 1024) {
-      setSmallScreen(true);
-    } else {
-      setPlaying(false);
-      setSmallScreen(false);
-    }
-  }, [screenWidth]);
-
   const handleArticleEnter = () => {
     if (!smallScreen) {
       videoElement?.play();
@@ -53,6 +44,20 @@ const GridVideo: React.FC<GridVideoProps> = ({
   });
 
   useEffect(() => {
+    if (screenWidth < 1024) {
+      setSmallScreen(true);
+    } else {
+      setPlaying(false);
+      setSmallScreen(false);
+    }
+  }, [screenWidth]);
+
+  useEffect(() => {
+    setPlaying(false);
+    setSmallScreen(false);
+  }, []);
+
+  useEffect(() => {
     const videoElement = videoRef.current;
 
     if (videoElement && smallScreen) {
@@ -73,7 +78,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
       onMouseLeave={handleArticleLeave}
       className=" group aspect-[5/4] sm:aspect-video relative flex items-center justify-center overflow-hidden"
     >
-      <Link className="h-full" href={`/works/${category}`}>
+      <Link className="h-full cursor-none" href={`/works/${category}`}>
         <video
           ref={videoRef}
           muted

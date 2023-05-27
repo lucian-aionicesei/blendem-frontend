@@ -15,7 +15,7 @@ const CategoryGrid: React.FC = () => {
   const router = useRouter();
   const currentPath = router.route;
 
-  // console.log(currentPath);
+  console.log("categories");
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -88,7 +88,7 @@ const CategoryGrid: React.FC = () => {
             style={{
               transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)`,
             }}
-            className="pointer-events-none absolute z-40 ease-out duration-200"
+            className="pointer-events-none absolute z-40 "
           >
             <div
               className={` ${
