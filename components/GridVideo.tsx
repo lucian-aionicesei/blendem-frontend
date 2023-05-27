@@ -71,14 +71,14 @@ const GridVideo: React.FC<GridVideoProps> = ({
       ref={videoContainerRef}
       onMouseEnter={handleArticleEnter}
       onMouseLeave={handleArticleLeave}
-      className=" group aspect-video relative flex items-center justify-center overflow-hidden"
+      className=" group aspect-[5/4] sm:aspect-video relative flex items-center justify-center overflow-hidden"
     >
-      <Link href={`/works/${category}`}>
+      <Link className="h-full" href={`/works/${category}`}>
         <video
           ref={videoRef}
           muted
           loop
-          className=" w-full h-full object-cover"
+          className=" object-cover sm:w-full h-full"
           src={videoUrl}
         ></video>
       </Link>
@@ -105,6 +105,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
         }`}
       >
         <Image
+          className="object-cover"
           src={imgUrl}
           fill={true}
           sizes="(min-width: 1023px) 50vw, 100vw"

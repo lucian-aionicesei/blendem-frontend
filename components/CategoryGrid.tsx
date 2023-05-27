@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import GridVideo from "./GridVideo";
 import useScreenWidth from "../hooks/useScreenWidth";
 import React, { MouseEvent } from "react";
+import { useRouter } from "next/router";
 
 const CategoryGrid: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
@@ -11,6 +12,10 @@ const CategoryGrid: React.FC = () => {
   const [smallScreen, setSmallScreen] = useState(false);
   const sectionRef = useRef<HTMLInputElement>(null);
   const screenWidth = useScreenWidth();
+  const router = useRouter();
+  const currentPath = router.route;
+
+  // console.log(currentPath);
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -66,9 +71,11 @@ const CategoryGrid: React.FC = () => {
 
   return (
     <section className="sm:mx-5 md:mx-14">
-      <h1 className="px-5 sm:px-0 py-3 md:py-5 text-2xl md:text-4xl font-bold uppercase">
-        Works
-      </h1>
+      {currentPath != "/works" && (
+        <h1 className="px-5 sm:px-0 py-3 md:py-5 text-2xl md:text-4xl font-bold uppercase">
+          Works
+        </h1>
+      )}
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
