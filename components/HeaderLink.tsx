@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-interface MyComponentProps {
+interface HeaderLinkProps {
   path: string;
   name: string;
   burgerMenu?: boolean;
@@ -13,7 +13,7 @@ const HeaderLink = ({
   name,
   burgerMenu = false,
   setMenuState,
-}: MyComponentProps) => {
+}: HeaderLinkProps) => {
   const router = useRouter();
   const currentPath = router.pathname;
 

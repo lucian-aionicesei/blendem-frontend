@@ -5,11 +5,11 @@ import { useInView } from "react-intersection-observer";
 import useScreenWidth from "../hooks/useScreenWidth";
 import React from "react";
 
-type GridVideoProps = {
+interface GridVideoProps {
   videoUrl: string;
   imgUrl: string;
   category: string;
-};
+}
 
 const GridVideo: React.FC<GridVideoProps> = ({
   videoUrl,
