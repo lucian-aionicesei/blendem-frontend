@@ -1,9 +1,9 @@
 const About = () => {
-    return ( 
-        <div>
-            <h1>About</h1>
-        </div>
-     );
-}
- 
+  return (
+    <main className="pt-20">
+      <h1>About</h1>
+    </main>
+  );
+};
+
 export default About;
