@@ -19,6 +19,7 @@ module.exports = {
         "project-black": "#231F20",
         "project-green": "#00A99D",
         "project-pink": "#D51880",
+        "project-dark-gray": "#3D3738",
         "project-gray": "#AEAEAE",
       },
     },

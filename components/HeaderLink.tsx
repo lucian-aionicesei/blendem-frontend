@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-interface MyComponentProps {
+interface HeaderLinkProps {
   path: string;
   name: string;
   burgerMenu?: boolean;
@@ -13,7 +13,7 @@ const HeaderLink = ({
   name,
   burgerMenu = false,
   setMenuState,
-}: MyComponentProps) => {
+}: HeaderLinkProps) => {
   const router = useRouter();
   const currentPath = router.pathname;
 
@@ -28,13 +28,13 @@ const HeaderLink = ({
         <li className={`relative group overflow-hidden ${isActive}`}>
           <Link
             href={path}
-            className="block px-4 py-3 ease-in-out duration-300 group-hover:-translate-y-full"
+            className="block px-4 py-3 ease-in-out duration-500 group-hover:-translate-y-full"
           >
             {name}
           </Link>
           <Link
             href={path}
-            className="block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-300"
+            className="block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-500"
           >
             {name}
           </Link>

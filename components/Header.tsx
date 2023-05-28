@@ -2,6 +2,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useScreenWidth from "../hooks/useScreenWidth";
+import Image from "next/image";
+import siteLogo from "../public/logo-white.png";
 import HeaderLink from "./HeaderLink";
 
 const Header = () => {
@@ -88,7 +90,14 @@ const Header = () => {
           }}
           href="/"
         >
-          <img src="/logo-white.png" className=" h-10 w-fit" alt="logo"></img>
+          <Image
+            src={siteLogo}
+            width={414}
+            height={85}
+            className=" h-8 sm:h-10 w-auto"
+            alt="logo"
+            priority={true}
+          ></Image>
         </Link>
         <nav className=" hidden lg:block">
           <ul className="flex gap-x-7 uppercase text-base items-center">
