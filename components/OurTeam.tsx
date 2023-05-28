@@ -18,7 +18,7 @@ const OurTeam = ({ text, imgUrl }: { text: string; imgUrl: string }) => {
         translateY={[0, 10]}
         className="col-end-13 xl:col-end-12 col-span-5 xl:col-span-4 row-start-1"
       >
-        <article className=" flex flex-col justify-center px-5 px-10 sm:p-10 lg:translate-y-10">
+        <article className=" flex flex-col justify-center px-5 py-10 sm:p-10 lg:translate-y-10">
           <h1 className=" text-2xl font-bold mb-3">Our team</h1>
           <p className="mt-t mb-8 lg:my-5">{text}</p>
           <div className="ml-auto mr-auto lg:ml-auto lg:mr-0 pt-4w">

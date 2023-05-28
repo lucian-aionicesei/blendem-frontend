@@ -110,7 +110,11 @@ const GridVideo: React.FC<GridVideoProps> = ({
           isPlaying ? "opacity-0" : !smallScreen && "group-hover:opacity-0"
         }`}
       >
-        <Parallax translateY={[-12, 12]} className="w-full h-full">
+        <Parallax
+          disabled={smallScreen ? true : false}
+          translateY={[-12, 12]}
+          className="w-full h-full"
+        >
           <Image
             className="object-cover scale-125"
             src={imgUrl}
