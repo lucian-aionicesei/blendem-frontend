@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { Parallax } from "react-scroll-parallax";
 
 const HeroVideo = ({ categoryVideo = false }) => {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -78,7 +77,7 @@ const HeroVideo = ({ categoryVideo = false }) => {
   }, []);
 
   return (
-    <section className=" relative overflow-hidden">
+    <section className=" relative">
       {phoneScreen ? (
         <video
           ref={videoRef}
@@ -99,18 +98,16 @@ const HeroVideo = ({ categoryVideo = false }) => {
         ></video>
       )}
       <div className=" absolute top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center">
-        <Parallax translateY={[-5, 5]} className="w-full h-full">
-          <Image
-            className={`absolute ease-in-out object-cover duration-300 ${
-              playVideo ? "opacity-0" : "opacity-100"
-            }`}
-            src="/mtbike.png"
-            fill={true}
-            sizes="100vw"
-            priority={true}
-            alt="video reel"
-          ></Image>
-        </Parallax>
+        <Image
+          className={`absolute ease-in-out object-cover duration-300 ${
+            playVideo ? "opacity-0" : "opacity-100"
+          }`}
+          src="/mtbike.png"
+          fill={true}
+          sizes="100vw"
+          priority={true}
+          alt="video reel"
+        ></Image>
         {categoryVideo && (
           <article className=" group text-5xl sm:text-7xl uppercase font-extrabold bg-black/60 px-10 flex items-center justify-center relative overflow-hidden w-full sm:w-auto">
             <h1
