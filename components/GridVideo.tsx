@@ -89,7 +89,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
       </Link>
       <section className=" absolute bottom-0 w-full flex lg:hidden justify-between items-center p-5 sm:p-8 overflow-hidden">
         <p
-          className={`uppercase font-extrabold text-xl sm:text-2xl ease-in-out duration-500 ${
+          className={`uppercase font-extrabold text-2xl sm:text-3xl ease-in-out duration-500 ${
             isPlaying
               ? "translate-y-0 opacity-100"
               : "translate-y-full opacity-0"

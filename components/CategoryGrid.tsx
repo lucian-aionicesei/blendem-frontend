@@ -15,7 +15,7 @@ const CategoryGrid: React.FC = () => {
   const router = useRouter();
   const currentPath = router.route;
 
-  console.log("categories");
+  // console.log("categories");
 
   const handleMouseEnter = () => {
     setIsHovering(true);

@@ -14,6 +14,7 @@ export default function Home() {
           aliquip ex ea commodo consequat."
         imgUrl="/our-team.png"
       />
+      <div className="w-full h-screen bg-black"></div>
     </main>
   );
 }
