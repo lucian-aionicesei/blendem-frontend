@@ -78,25 +78,14 @@ const HeroVideo = ({ categoryVideo = false }) => {
 
   return (
     <section className=" relative">
-      {phoneScreen ? (
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          className=" w-full h-screen object-cover"
-          src="/hero-video.mp4"
-        ></video>
-      ) : (
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          className=" w-full h-screen object-cover"
-          src="/hero-video.mp4"
-        ></video>
-      )}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        className=" w-full h-screen object-cover"
+        src="/hero-video.mp4"
+      ></video>
       <div className=" absolute top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center">
         <Image
           className={`absolute ease-in-out object-cover duration-300 ${
