@@ -1,0 +1,11 @@
+.swiper-button-prev,
+.swiper-button-next {
+  @apply text-red-500; /* Apply Tailwind utility class */
+  @apply text-xl; /* Apply Tailwind utility class */
+}
+
+/* Modify bullet point styles */
+.swiper-pagination-bullet .swiper-pagination-bullet-active {
+  @apply bg-red-500; /* Apply Tailwind utility class */
+  @apply opacity-80; /* Apply Tailwind utility class */
+}

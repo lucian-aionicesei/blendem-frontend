@@ -1,6 +1,7 @@
 import HeroVideo from "@/components/HeroVideo";
 import CategoryGrid from "@/components/CategoryGrid";
 import OurTeam from "@/components/OurTeam";
+import SliderlElement from "@/components/SliderElement";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
           aliquip ex ea commodo consequat."
         imgUrl="/our-team.png"
       />
-      <div className="w-full h-screen bg-black"></div>
+      <SliderlElement />
     </main>
   );
 }

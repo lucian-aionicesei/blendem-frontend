@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.swiper-button-prev,
+.swiper-button-next {
+  @apply text-red-500; /* Apply Tailwind utility class */
+  @apply text-xl; /* Apply Tailwind utility class */
+}
+
+/* Modify bullet point styles */
+.swiper-pagination-bullet .swiper-pagination-bullet-active {
+  background-color: red;
+}
 body {
   font-family: "Montserrat", sans-serif;
   @apply bg-project-black text-white font-normal scroll-smooth;

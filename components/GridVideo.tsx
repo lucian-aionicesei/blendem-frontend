@@ -116,7 +116,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
           className="w-full h-full"
         >
           <Image
-            className="object-cover scale-125"
+            className="object-cover lg:scale-125"
             src={imgUrl}
             fill={true}
             sizes="(min-width: 1023px) 50vw, 100vw"
