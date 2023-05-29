@@ -22,6 +22,33 @@ module.exports = {
         "project-dark-gray": "#3D3738",
         "project-gray": "#AEAEAE",
       },
+      keyframes: {
+        slideOut: {
+          "0%": {
+            transform: "translateX(0)",
+            opacity: "1",
+            marginRight: 16
+          },
+          "100%": {
+            transform: "translateX(100%)",
+            opacity: "0",
+            marginRight: 0
+          },
+        },
+
+        slideIn: {
+          "0%": {
+            transform: "translateX(100%)",
+            opacity: "0",
+            marginRight: 0
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: "1",
+            marginRight: 16
+          },
+        },
+      },
     },
     fontSize: {
       xs: "0.625rem",
