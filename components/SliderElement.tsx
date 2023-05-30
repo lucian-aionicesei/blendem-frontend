@@ -19,7 +19,7 @@ const SliderElement: React.FC<SliderProps> = ({ slides }) => {
   const currentPath = router.route;
 
   return (
-    <section className="sm:mx-5 md:mx-14 my-9 sm:my-16 lg:grid grid-cols-12">
+    <section className="sm:mx-5 md:mx-14 my-6 sm:my-12 lg:grid grid-cols-12">
       <Swiper
         // install Swiper modules
         className={`${
