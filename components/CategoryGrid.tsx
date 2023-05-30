@@ -70,7 +70,7 @@ const CategoryGrid: React.FC = () => {
   }, [screenWidth]);
 
   return (
-    <section className="sm:mx-5 md:mx-14">
+    <section className="sm:mx-5 md:mx-14 mb-12 lg:mb-16">
       {currentPath != "/works" && (
         <h1 className="px-5 sm:px-0 py-3 md:py-5 text-2xl md:text-4xl font-bold uppercase">
           Works
@@ -93,7 +93,7 @@ const CategoryGrid: React.FC = () => {
             <div
               className={` ${
                 isHovering ? "scale-100" : "scale-0"
-              } h-16 w-16 border-project-green bg-black/40 border-2 rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2 ease-in-out duration-200`}
+              } h-14 w-14 bg-project-green rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2 ease-in-out duration-200`}
             >
               <p className="text-base font-bold">Watch</p>
             </div>
