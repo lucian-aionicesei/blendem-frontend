@@ -70,7 +70,7 @@ const CategoryGrid: React.FC = () => {
   }, [screenWidth]);
 
   return (
-    <section className="sm:mx-5 md:mx-14">
+    <section className="sm:mx-5 md:mx-14 mb-12 lg:mb-16">
       {currentPath != "/works" && (
         <h1 className="px-5 sm:px-0 py-3 md:py-5 text-2xl md:text-4xl font-bold uppercase">
           Works
