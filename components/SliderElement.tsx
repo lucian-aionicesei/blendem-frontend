@@ -24,7 +24,7 @@ const SliderElement: React.FC<SliderProps> = ({ slides }) => {
         // install Swiper modules
         className={`${
           currentPath !== "/works/[slug]" && "xl:col-start-2 xl:col-span-10"
-        } col-span-12 w-full aspect-video md:aspect-[5/3] flex items-center justify-center relative`}
+        } col-span-12 w-full aspect-video md:aspect-[7/4] flex items-center justify-center relative`}
         modules={[Pagination, A11y, Virtual]}
         spaceBetween={50}
         loop={true}

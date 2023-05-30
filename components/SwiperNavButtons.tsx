@@ -9,7 +9,7 @@ const SwiperNavButtons = () => {
         onClick={() => swiper.slidePrev()}
       >
         <svg
-          className="w-9 lg:w-14 h-9 lg:h-14"
+          className="w-9 lg:w-11 h-9 lg:h-11"
           width="47"
           height="47"
           viewBox="0 0 47 47"
@@ -47,7 +47,7 @@ const SwiperNavButtons = () => {
         onClick={() => swiper.slideNext()}
       >
         <svg
-          className="w-9 lg:w-14 h-9 lg:h-14"
+          className="w-9 lg:w-11 h-9 lg:h-11"
           width="47"
           height="47"
           viewBox="0 0 47 47"

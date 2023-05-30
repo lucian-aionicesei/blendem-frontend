@@ -8,7 +8,7 @@ export default function Home() {
     { title: "Drone action", imgUrl: "/nature.png" },
     { title: "Live broadcasting", imgUrl: "/broadcast.png" },
     { title: "Set on site", imgUrl: "/documentary.png" },
-    { imgUrl: "/our-team.png" },
+    { title: "Contact us", imgUrl: "/our-team.png" },
   ];
 
   return (
