@@ -3,9 +3,9 @@ import { useSwiper } from "swiper/react";
 const SwiperNavButtons = () => {
   const swiper = useSwiper();
   return (
-    <nav className="absolute top-1/2 px-1 md:px-4 -translate-y-1/2 z-30 w-full flex justify-between">
+    <nav className="absolute top-1/2 px-1 md:px-4 -translate-y-1/2 z-30 w-full flex justify-between pointer-events-none">
       <button
-        className=" hover:scale-110 ease-out duration-200"
+        className=" hover:scale-110 ease-out duration-200 pointer-events-auto"
         onClick={() => swiper.slidePrev()}
       >
         <svg
@@ -43,7 +43,7 @@ const SwiperNavButtons = () => {
       </button>
 
       <button
-        className=" hover:scale-110 ease-out duration-200"
+        className=" hover:scale-110 ease-out duration-200 pointer-events-auto"
         onClick={() => swiper.slideNext()}
       >
         <svg
