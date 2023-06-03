@@ -1,4 +1,3 @@
-import Link from "next/link";
 import linkedIn from "../public/icons/linkedIn.svg";
 import FooterIconLink from "./FooterIconLink";
 import facebook from "../public/icons/facebook.svg";
