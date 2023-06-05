@@ -100,42 +100,42 @@ const CategoryGrid: React.FC = () => {
           </div>
         )}
         <GridVideo
-          videoUrl={"/hero-video.mp4"}
+          videoUrl={"/videos/Documentary_15sec.mp4"}
           imgUrl={"/documentary.png"}
           category={"documentary"}
         />
         <GridVideo
-          videoUrl={"/hero-video.mp4"}
+          videoUrl={"/videos/Industry_15sec.mp4"}
           imgUrl={"/industry.png"}
           category={"industry"}
         />
         <GridVideo
-          videoUrl={"/hero-video.mp4"}
+          videoUrl={"/videos/Festival_15sec.mp4"}
           imgUrl={"/festival.png"}
           category={"festival"}
         />
         <GridVideo
-          videoUrl={"/hero-video.mp4"}
+          videoUrl={"/videos/Culture_15sec.mp4"}
           imgUrl={"/culture.png"}
           category={"culture"}
         />
         <GridVideo
-          videoUrl={"/hero-video.mp4"}
+          videoUrl={"/videos/Nature_15sec.mp4"}
           imgUrl={"/nature.png"}
           category={"nature"}
         />
         <GridVideo
-          videoUrl={"/hero-video.mp4"}
+          videoUrl={"/videos/Sports_15sec.mp4"}
           imgUrl={"/sports.png"}
           category={"sports"}
         />
         <GridVideo
-          videoUrl={"/hero-video.mp4"}
+          videoUrl={"/videos/Broadcast_15sec.mp4"}
           imgUrl={"/broadcast.png"}
           category={"broadcast"}
         />
         <GridVideo
-          videoUrl={"/hero-video.mp4"}
+          videoUrl={"/videos/Creative_15sec.mp4"}
           imgUrl={"/creative.png"}
           category={"creative"}
         />

@@ -5,7 +5,7 @@ import SliderElement from "@/components/SliderElement";
 export default function Category() {
   const router = useRouter();
   const currentPath = router.query.slug;
-  // console.log(router.route);
+  // console.log(currentPath);
 
   const sliderContent = [
     { title: "Drone action", imgUrl: "/nature.png" },
@@ -16,7 +16,7 @@ export default function Category() {
 
   return (
     <main>
-      <HeroVideo categoryVideo={true} />
+      <HeroVideo category={`${currentPath}`} categoryVideo={true} />
       <h1 className="text-5xl">{currentPath}</h1>
       <SliderElement slides={sliderContent} />
     </main>
