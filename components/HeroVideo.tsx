@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
 const HeroVideo = ({
-  categoryVideo = false,
+  categoryVideo,
   category,
 }: {
   categoryVideo: boolean;

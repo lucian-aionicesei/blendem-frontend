@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col gap-y-5 md:gap-y-8">
-      <HeroVideo categoryVideo={false} />
+      <HeroVideo category="none" categoryVideo={false} />
       <CategoryGrid />
       <OurTeam
         text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
