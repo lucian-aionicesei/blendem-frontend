@@ -8,12 +8,11 @@ const ProjectVideo = () => {
   const [isPlaying, setPlaying] = useState(false);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const [timelineProgress, setTimelineProgress] = useState(0);
+  const [fullScreen, setFullScreen] = useState(false);
 
   const [videoContainerRef, inView] = useInView({
-    // threshold: 0.5,
     root: null,
     rootMargin: "-45% 0% -55% 0%",
-    // Adjust this threshold value as needed
   });
 
   const calculateWidth = (progress: number) => {
@@ -57,8 +56,6 @@ const ProjectVideo = () => {
   }, []);
 
   useEffect(() => {
-    // const videoElement = projectVideo.current;
-
     if (videoElement) {
       if (inView && videoElement.paused) {
         console.log("Video in view");
@@ -72,22 +69,54 @@ const ProjectVideo = () => {
     }
   }, [inView, videoElement]);
 
+  useEffect(() => {
+    if (videoElement) {
+      if (isPlaying) {
+        videoElement.play();
+      } else {
+        videoElement.pause();
+      }
+    }
+  }, [isPlaying, videoElement]);
+
+  useEffect(() => {
+    if (fullScreen && videoElement) {
+      videoElement.muted = false;
+      videoElement.currentTime = 0;
+      setTimelineProgress(0);
+      document.body.style.overflow = "hidden";
+    } else if (!fullScreen && videoElement) {
+      videoElement.muted = true;
+      document.body.style.overflow = "auto";
+    }
+  }, [fullScreen, videoElement]);
+
   return (
-    <section className="sm:mx-5 md:mx-14 h-fit box-border py-2 sm:py-12 xl:py-16 relative aspect-[5/4] sm:aspect-video lg:aspect-[2/1]">
+    <section
+      className={`${
+        fullScreen
+          ? "top-0 left-0 fixed z-50 w-full h-full bg-project-black"
+          : "relative sm:mx-5 md:mx-14 h-fit"
+      }  box-border overflow-hidden py-2 sm:py-12 xl:py-16 aspect-[5/4] sm:aspect-video lg:aspect-[11/5] flex flex-col items-center justify-center`}
+    >
       <div ref={videoContainerRef} className=" w-full h-full"></div>
-      <div className="absolute top-0 left-0 aspect-[5/4] sm:aspect-video lg:aspect-[2/1] w-full flex items-center justify-center">
+      <div className="absolute aspect-[5/4] sm:aspect-video lg:aspect-[11/5] w-full flex items-center justify-center">
         <video
-          className="h-full sm:h-auto object-cover"
+          onDoubleClick={handleFullScreenClick}
+          onClick={() => {
+            fullScreen && setPlaying(!isPlaying);
+          }}
+          className="h-full sm:h-auto sm:w-full "
           muted
           loop
           ref={projectVideo}
-          src="/videos/Nature_15sec.mp4"
+          src="/videos/royal.mp4"
         ></video>
       </div>
       <div className="videoControls absolute bottom-0 left-0 w-full z-30 ">
         <div
           className={`${
-            isPlaying && "bg-gradient-to-t"
+            (isPlaying || fullScreen) && "bg-gradient-to-t"
           } w-full h-20 sm:h-24 lg:h-32 from-black/60 px-5 sm:px-10 flex flex-col justify-center`}
         >
           <div className="flex w-full gap-x-5 sm:gap-x-10 items-end">
@@ -99,7 +128,7 @@ const ProjectVideo = () => {
                 onClick={handleProgressBarClick}
                 ref={progressBarRef}
                 className={`${
-                  isPlaying ? "opacity-100" : "opacity-0"
+                  isPlaying || fullScreen ? "opacity-100" : "opacity-0"
                 } w-full h-2 cursor-pointer flex items-center ease-in-out duration-300`}
               >
                 <div className="w-full h-[1px] bg-white">
@@ -110,74 +139,143 @@ const ProjectVideo = () => {
                 </div>
               </div>
             </div>
-            <svg
-              onClick={handleFullScreenClick}
-              className={`${
-                isPlaying ? "opacity-100" : "opacity-0"
-              } mb-1 cursor-pointer ease-in-out duration-300`}
-              width="29"
-              height="27"
-              viewBox="0 0 29 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="27"
-                width="10"
-                height="2"
-                transform="rotate(-90 0 27)"
-                fill="white"
-              />
-              <rect
-                x="10"
-                y="27"
-                width="10"
-                height="2"
-                transform="rotate(180 10 27)"
-                fill="white"
-              />
-              <rect width="10" height="2" fill="white" />
-              <rect
-                y="10"
-                width="10"
-                height="2"
-                transform="rotate(-90 0 10)"
-                fill="white"
-              />
-              <rect
-                x="29"
-                width="10"
-                height="2"
-                transform="rotate(90 29 0)"
-                fill="white"
-              />
-              <rect x="19" width="10" height="2" fill="white" />
-              <rect
-                x="29"
-                y="27"
-                width="10"
-                height="2"
-                transform="rotate(180 29 27)"
-                fill="white"
-              />
-              <rect
-                x="29"
-                y="17"
-                width="10"
-                height="2"
-                transform="rotate(90 29 17)"
-                fill="white"
-              />
-            </svg>
+            {fullScreen ? (
+              <svg
+                onClick={() => {
+                  setFullScreen(false);
+                }}
+                className={`mb-1 cursor-pointer `}
+                width="29"
+                height="27"
+                viewBox="0 0 29 27"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="10"
+                  y="17"
+                  width="10"
+                  height="2"
+                  transform="rotate(90 10 17)"
+                  fill="white"
+                />
+                <rect
+                  x="-6.10352e-05"
+                  y="17"
+                  width="10"
+                  height="2"
+                  fill="white"
+                />
+                <rect
+                  x="10"
+                  y="10"
+                  width="10"
+                  height="2"
+                  transform="rotate(-180 10 10)"
+                  fill="white"
+                />
+                <rect
+                  x="10"
+                  width="10"
+                  height="2"
+                  transform="rotate(90 10 0)"
+                  fill="white"
+                />
+                <rect
+                  x="19"
+                  y="10"
+                  width="10"
+                  height="2"
+                  transform="rotate(-90 19 10)"
+                  fill="white"
+                />
+                <rect
+                  x="29.0001"
+                  y="10"
+                  width="10"
+                  height="2"
+                  transform="rotate(180 29.0001 10)"
+                  fill="white"
+                />
+                <rect x="19" y="17" width="10" height="2" fill="white" />
+                <rect
+                  x="19"
+                  y="27"
+                  width="10"
+                  height="2"
+                  transform="rotate(-90 19 27)"
+                  fill="white"
+                />
+              </svg>
+            ) : (
+              <svg
+                onClick={() => {
+                  setFullScreen(true);
+                }}
+                className={`${
+                  isPlaying ? "opacity-100" : "opacity-0"
+                } mb-1 cursor-pointer ease-in-out duration-300`}
+                width="29"
+                height="27"
+                viewBox="0 0 29 27"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  y="27"
+                  width="10"
+                  height="2"
+                  transform="rotate(-90 0 27)"
+                  fill="white"
+                />
+                <rect
+                  x="10"
+                  y="27"
+                  width="10"
+                  height="2"
+                  transform="rotate(180 10 27)"
+                  fill="white"
+                />
+                <rect width="10" height="2" fill="white" />
+                <rect
+                  y="10"
+                  width="10"
+                  height="2"
+                  transform="rotate(-90 0 10)"
+                  fill="white"
+                />
+                <rect
+                  x="29"
+                  width="10"
+                  height="2"
+                  transform="rotate(90 29 0)"
+                  fill="white"
+                />
+                <rect x="19" width="10" height="2" fill="white" />
+                <rect
+                  x="29"
+                  y="27"
+                  width="10"
+                  height="2"
+                  transform="rotate(180 29 27)"
+                  fill="white"
+                />
+                <rect
+                  x="29"
+                  y="17"
+                  width="10"
+                  height="2"
+                  transform="rotate(90 29 17)"
+                  fill="white"
+                />
+              </svg>
+            )}
           </div>
-          {/* <p className=" hidden sm:block text-base lg:text-xl font-bold uppercase">
-            Documentary
-          </p> */}
         </div>
       </div>
       <div
         className={` absolute top-0 left-0 h-full w-full pointer-events-none ease-in-out duration-700 ${
-          isPlaying ? "opacity-0" : "opacity-100"
+          isPlaying || fullScreen ? "opacity-0" : "opacity-100"
         }`}
       >
         <Image
