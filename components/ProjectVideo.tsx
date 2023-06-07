@@ -33,10 +33,27 @@ const ProjectVideo = () => {
   };
 
   const handleFullScreenClick = () => {
-    if (projectVideo.current) {
+    if (projectVideo.current && videoElement) {
       if (projectVideo.current.requestFullscreen) {
         projectVideo.current.requestFullscreen();
+        videoElement.muted = false;
+        videoElement.currentTime = 0;
+        setTimelineProgress(0);
       }
+    }
+  };
+
+  const handleFullScreenChange = () => {
+    const fullscreenElement =
+      document.fullscreenElement ||
+      (document as any).mozFullScreenElement ||
+      (document as any).webkitFullscreenElement ||
+      (document as any).msFullscreenElement;
+
+    setFullScreen(!!fullscreenElement);
+
+    if (!fullscreenElement && videoElement) {
+      videoElement.muted = true;
     }
   };
 
@@ -91,6 +108,14 @@ const ProjectVideo = () => {
     }
   }, [fullScreen, videoElement]);
 
+  useEffect(() => {
+    document.addEventListener("fullscreenchange", handleFullScreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullScreenChange);
+    };
+  }, []);
+
   return (
     <section
       className={`${
@@ -126,6 +151,7 @@ const ProjectVideo = () => {
               </span>
               <div
                 onClick={handleProgressBarClick}
+                onMouseUp={handleProgressBarClick}
                 ref={progressBarRef}
                 className={`${
                   isPlaying || fullScreen ? "opacity-100" : "opacity-0"
@@ -144,7 +170,7 @@ const ProjectVideo = () => {
                 onClick={() => {
                   setFullScreen(false);
                 }}
-                className={`mb-1 cursor-pointer `}
+                className={`mb-1 cursor-pointer hover:scale-110 duration-100 ease-in-out`}
                 width="29"
                 height="27"
                 viewBox="0 0 29 27"
@@ -214,7 +240,7 @@ const ProjectVideo = () => {
                 }}
                 className={`${
                   isPlaying ? "opacity-100" : "opacity-0"
-                } mb-1 cursor-pointer ease-in-out duration-300`}
+                }  mb-1 cursor-pointer hover:scale-110 ease-in-out duration-100`}
                 width="29"
                 height="27"
                 viewBox="0 0 29 27"
