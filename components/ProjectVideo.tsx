@@ -131,11 +131,11 @@ const ProjectVideo = () => {
           onClick={() => {
             fullScreen && setPlaying(!isPlaying);
           }}
-          className="h-full sm:h-auto sm:w-full "
+          className=" object-cover h-full w-auto sm:h-auto sm:w-full "
           muted
           loop
           ref={projectVideo}
-          src="/videos/royal.mp4"
+          src="/videos/Culture_15sec.mp4"
         ></video>
       </div>
       <div className="videoControls absolute bottom-0 left-0 w-full z-30 ">
