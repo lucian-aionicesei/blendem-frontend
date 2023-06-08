@@ -2,7 +2,17 @@ import { useEffect, useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 
-const ProjectVideo = () => {
+interface ProjectVideoProps {
+  videoUrl: string;
+  imgUrl: string;
+  title: string;
+}
+
+const ProjectVideo: React.FC<ProjectVideoProps> = ({
+  videoUrl,
+  imgUrl,
+  title,
+}) => {
   const projectVideo = useRef<HTMLVideoElement | null>(null);
   const videoElement = projectVideo.current;
   const [isPlaying, setPlaying] = useState(false);
@@ -20,41 +30,35 @@ const ProjectVideo = () => {
   };
 
   const handleProgressBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (progressBarRef.current && projectVideo.current) {
+    if (progressBarRef.current && videoElement) {
       const progressBarRect = progressBarRef.current.getBoundingClientRect();
       const clickPositionX = event.clientX - progressBarRect.left;
       const progressBarWidth = progressBarRect.width;
       const progress = clickPositionX / progressBarWidth;
-      const videoDuration = projectVideo.current.duration;
+      const videoDuration = videoElement.duration;
       const newTimelineProgress = progress * videoDuration;
-      projectVideo.current.currentTime = newTimelineProgress;
+      videoElement.currentTime = newTimelineProgress;
       setTimelineProgress(newTimelineProgress / videoDuration);
     }
   };
 
   const handleFullScreenClick = () => {
-    if (projectVideo.current && videoElement) {
-      if (projectVideo.current.requestFullscreen) {
-        projectVideo.current.requestFullscreen();
-        videoElement.muted = false;
-        videoElement.currentTime = 0;
-        setTimelineProgress(0);
-      }
+    if (videoElement) {
+      videoElement.requestFullscreen();
+      videoElement.muted = false;
+      videoElement.currentTime = 0;
+      setTimelineProgress(0);
     }
   };
 
   const handleFullScreenChange = () => {
-    const fullscreenElement =
-      document.fullscreenElement ||
-      (document as any).mozFullScreenElement ||
-      (document as any).webkitFullscreenElement ||
-      (document as any).msFullscreenElement;
+    const isVideoFullScreen =
+      document.fullscreenElement === videoElement ||
+      (document as any).mozFullScreenElement === videoElement ||
+      (document as any).webkitFullscreenElement === videoElement ||
+      (document as any).msFullscreenElement === videoElement;
 
-    setFullScreen(!!fullscreenElement);
-
-    if (!fullscreenElement && videoElement) {
-      videoElement.muted = true;
-    }
+    setFullScreen(isVideoFullScreen);
   };
 
   useEffect(() => {
@@ -75,11 +79,9 @@ const ProjectVideo = () => {
   useEffect(() => {
     if (videoElement) {
       if (inView && videoElement.paused) {
-        console.log("Video in view");
         videoElement.play();
         setPlaying(true);
       } else if (!inView && !videoElement.paused) {
-        console.log("Video in paused");
         videoElement.pause();
         setPlaying(false);
       }
@@ -114,7 +116,7 @@ const ProjectVideo = () => {
     return () => {
       document.removeEventListener("fullscreenchange", handleFullScreenChange);
     };
-  }, []);
+  });
 
   return (
     <section
@@ -135,7 +137,7 @@ const ProjectVideo = () => {
           muted
           loop
           ref={projectVideo}
-          src="/videos/Culture_15sec.mp4"
+          src={videoUrl}
         ></video>
       </div>
       <div className="videoControls absolute bottom-0 left-0 w-full z-30 ">
@@ -147,7 +149,7 @@ const ProjectVideo = () => {
           <div className="flex w-full gap-x-5 sm:gap-x-10 items-end">
             <div className="flex-grow">
               <span className=" text-xl md:text-2xl lg:text-3xl font-bold">
-                Carp - Mountain Rescue
+                {title}
               </span>
               <div
                 onClick={handleProgressBarClick}
@@ -306,7 +308,7 @@ const ProjectVideo = () => {
       >
         <Image
           className="object-cover"
-          src="/documentary.png"
+          src={imgUrl}
           fill={true}
           sizes="(min-width: 1023px) 50vw, 100vw"
           alt="project name"
