@@ -37,7 +37,15 @@ export default function Category() {
     <main>
       <HeroVideo category={`${currentPath}`} categoryVideo={true} />
       <section className="2xl:container mx-auto my-24 lg:my-32">
-        <TextComponent />
+        <TextComponent
+          title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          textCol1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur."
+        />
       </section>
       {projects.map((project) => (
         <ProjectVideo
@@ -48,6 +56,16 @@ export default function Category() {
         />
       ))}
       <SliderElement slides={sliderContent} />
+      <section className="2xl:container mx-auto my-16 lg:my-24">
+        <TextComponent
+          textCol1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur."
+        />
+      </section>
     </main>
   );
 }

@@ -1,23 +1,30 @@
 import { Parallax } from "react-scroll-parallax";
 
-const TextComponent = () => {
+interface TextComponentProps {
+  title?: string;
+  textCol1: string;
+  textCol2?: string;
+}
+
+const TextComponent = ({ title, textCol1, textCol2 }: TextComponentProps) => {
   return (
     <article className="mx-5 md:mx-14 lg:grid grid-cols-12">
-      <Parallax className="col-start-2 col-span-5">
-        <h2 className=" pb-10 font-semibold mr-5 text-3xl">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      {title ? (
+        <h2 className="col-start-2 col-span-5 pb-10 font-semibold mr-5 text-3xl">
+          {title}
         </h2>
-      </Parallax>
-      <Parallax translateY={[15, -10]} className=" col-start-7 col-span-4">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </p>
-      </Parallax>
+      ) : textCol2 ? (
+        <p className="col-start-2 col-span-4">{textCol1}</p>
+      ) : (
+        <p className="col-start-2 col-span-5">{textCol1}</p>
+      )}
+      {title ? (
+        <Parallax translateY={[15, -10]} className=" col-start-7 col-span-4">
+          <p>{textCol1}</p>
+        </Parallax>
+      ) : (
+        textCol2 && <p className=" col-start-7 col-span-4">{textCol2}</p>
+      )}
     </article>
   );
 };
