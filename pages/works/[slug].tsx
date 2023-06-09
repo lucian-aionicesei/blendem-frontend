@@ -2,6 +2,7 @@ import HeroVideo from "@/components/HeroVideo";
 import { useRouter } from "next/router";
 import SliderElement from "@/components/SliderElement";
 import ProjectVideo from "@/components/ProjectVideo";
+import TextComponent from "@/components/TextCoponent";
 
 export default function Category() {
   const router = useRouter();
@@ -35,7 +36,9 @@ export default function Category() {
   return (
     <main>
       <HeroVideo category={`${currentPath}`} categoryVideo={true} />
-      <h1 className="text-5xl">{currentPath}</h1>
+      <section className="2xl:container mx-auto my-24 lg:my-32">
+        <TextComponent />
+      </section>
       {projects.map((project) => (
         <ProjectVideo
           key={project.title}
