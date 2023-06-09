@@ -124,10 +124,10 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
         fullScreen
           ? "top-0 left-0 fixed z-50 w-full h-full bg-project-black"
           : "relative sm:mx-5 md:mx-14 h-fit"
-      }  box-border overflow-hidden py-2 sm:py-12 xl:py-16 aspect-[5/4] sm:aspect-video lg:aspect-[11/5] flex flex-col items-center justify-center`}
+      }  box-border overflow-hidden py-2 sm:py-12 xl:py-16 aspect-[5/4] sm:aspect-video lg:aspect-[2/1] flex flex-col items-center justify-center`}
     >
       <div ref={videoContainerRef} className=" w-full h-full"></div>
-      <div className="absolute aspect-[5/4] sm:aspect-video lg:aspect-[11/5] w-full flex items-center justify-center">
+      <div className="absolute aspect-[5/4] sm:aspect-video lg:aspect-[2/1] w-full flex items-center justify-center">
         <video
           onDoubleClick={handleFullScreenClick}
           onClick={() => {
