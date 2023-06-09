@@ -10,7 +10,7 @@ const TextComponent = ({ title, textCol1, textCol2 }: TextComponentProps) => {
   return (
     <article className="mx-5 md:mx-14 lg:grid grid-cols-12">
       {title ? (
-        <h2 className="col-start-2 col-span-5 pb-10 font-semibold mr-5 text-3xl">
+        <h2 className="col-start-2 col-span-5 pb-5 lg:pb-10 font-semibold mr-5 text-2xl lg:text-3xl">
           {title}
         </h2>
       ) : textCol2 ? (

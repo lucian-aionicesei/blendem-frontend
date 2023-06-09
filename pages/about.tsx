@@ -16,7 +16,7 @@ const About = () => {
       <figure className="relative aspect-video md:aspect-[2/1] sm:mx-5 md:mx-14 mb-12 lg:mb-16">
         <HeroImage></HeroImage>
       </figure>
-      <section className="2xl:container mx-auto my-24 lg:my-32">
+      <section className="2xl:container mx-auto my-14 md:my-24 lg:my-32">
         <TextComponent
           title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
           textCol1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
