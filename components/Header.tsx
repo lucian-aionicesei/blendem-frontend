@@ -5,7 +5,7 @@ import useScreenWidth from "../hooks/useScreenWidth";
 import Image from "next/image";
 import siteLogo from "../public/logo-white.png";
 import HeaderLink from "./HeaderLink";
-import worldIcon from "../public/world_icon.svg";
+import LanguageSelector from "./LanguageSelector";
 
 const Header = () => {
   const router = useRouter();
@@ -17,6 +17,13 @@ const Header = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [showOptions, setShowOptions] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setNavOpen((prev) => !prev);
+    }, 200);
+  }, [showOptions]);
 
   useEffect(() => {
     const handleRouteChange = () => {
@@ -108,26 +115,11 @@ const Header = () => {
             <HeaderLink path="/works" name="Works" />
             <HeaderLink path="/about" name="About" />
             <HeaderLink path="/contact" name="Contact" />
-
-            <li>
-              <Image
-                src={worldIcon}
-                className="w-6 cursor-pointer"
-                alt="Change language button"
-                onClick={function () {
-                  setShowOptions((s) => !s);
-                }}
-              />
-              <div
-                className={`${
-                  showOptions ? "opacity-100 visible" : "opacity-0 hidden"
-                } transition-opacity flex flex-col absolute mt-2 gap-2`}
-              >
-                <Link href="#">EN</Link>
-                <Link href="#">HU</Link>
-                <Link href="#">RO</Link>
-              </div>
-            </li>
+            <LanguageSelector
+              navOpen={navOpen}
+              setShowOptions={setShowOptions}
+              showOptions={showOptions}
+            />
           </ul>
         </nav>
         <div
@@ -198,27 +190,12 @@ const Header = () => {
             burgerMenu={true}
           />
 
-          <li className={`self-end flex flex-row-reverse items-center`}>
-            <Image
-              src={worldIcon}
-              className="w-7 cursor-pointer z-10"
-              alt="Change language button"
-              onClick={function () {
-                setShowOptions((s) => !s);
-              }}
-            />
-            <div
-              className={`${
-                showOptions
-                  ? "animate-[slideIn_350ms_ease-in-out_forwards]"
-                  : "animate-[slideOut_350ms_ease-in-out_forwards]"
-              } flex gap-4 text-xl`}
-            >
-              <Link href="#">EN</Link>
-              <Link href="#">HU</Link>
-              <Link href="#">RO</Link>
-            </div>
-          </li>
+          <LanguageSelector
+            navOpen={navOpen}
+            setShowOptions={setShowOptions}
+            showOptions={showOptions}
+            isMobile={true}
+          />
         </ul>
       </nav>
     </header>
