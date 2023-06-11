@@ -3,6 +3,8 @@ import Link from "next/link";
 import worldIcon from "../public/world_icon.svg";
 import { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import { HomePageContext } from "./app-context";
 
 export default function LanguageSelector({
   showOptions,
@@ -18,6 +20,7 @@ export default function LanguageSelector({
   availableRegions: string[] | null;
 }) {
   const router = useRouter();
+  console.log(useContext(HomePageContext));
 
   return (
     <li

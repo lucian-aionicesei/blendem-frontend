@@ -1,11 +1,12 @@
 import Header from "./Header";
+import HomePageProvider from "./app-context";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <HomePageProvider>
       <Header />
       {children}
-    </div>
+    </HomePageProvider>
   );
 };
 
