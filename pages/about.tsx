@@ -1,7 +1,7 @@
-import EmployeesDescription from "@/components/EmployeesDescription";
+// import EmployeesDescription from "@/components/EmployeesDescription";
 import HeroImage from "@/components/HeroImage";
 import SliderElement from "@/components/SliderElement";
-import TextComponent from "@/components/TextCoponent";
+import TextComponent from "@/components/TextComponent";
 
 const About = () => {
   const sliderContent = [

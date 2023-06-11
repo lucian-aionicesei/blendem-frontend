@@ -2,7 +2,7 @@ import HeroVideo from "@/components/HeroVideo";
 import { useRouter } from "next/router";
 import SliderElement from "@/components/SliderElement";
 import ProjectVideo from "@/components/ProjectVideo";
-import TextComponent from "@/components/TextCoponent";
+import TextComponent from "@/components/TextComponent";
 
 export default function Category() {
   const router = useRouter();
