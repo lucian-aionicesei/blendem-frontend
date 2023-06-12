@@ -2,6 +2,7 @@ import HeroVideo from "@/components/HeroVideo";
 import CategoryGrid from "@/components/CategoryGrid";
 import OurTeam from "@/components/OurTeam";
 import SliderElement from "@/components/SliderElement";
+import ContactCard from "@/components/ContactCard";
 
 export default function Home() {
   const sliderContent = [
@@ -23,6 +24,10 @@ export default function Home() {
         imgUrl="/our-team.png"
       />
       <SliderElement slides={sliderContent} />
+      <ContactCard
+        location="Parcul Industrial Sfantu Gheorghe Cart. Campul Frumos nr.5 520072"
+        email="contact@blendemproduction.com"
+      />
     </main>
   );
 }

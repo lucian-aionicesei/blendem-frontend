@@ -42,11 +42,6 @@ const SliderElement: React.FC<SliderProps> = ({ slides }) => {
                 sizes="(min-width: 1023px) 50vw, 100vw"
                 alt="our team"
               ></Image>
-              {/* {slideContent.title && (
-                <div className="absolute bg-black/60 font-bold text-2xl sm:text-4xl lg:text-5xl uppercase">
-                  <h2 className="p-4 sm:p-6 lg:p-8">{slideContent.title}</h2>
-                </div>
-              )} */}
               {slideContent.title && <SlideTitle title={slideContent.title} />}
             </div>
           </SwiperSlide>
