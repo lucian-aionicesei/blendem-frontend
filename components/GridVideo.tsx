@@ -20,7 +20,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videoElement = videoRef.current;
   const [smallScreen, setSmallScreen] = useState(false);
-  const screenWidth = useScreenWidth();
+  const { screenWidth } = useScreenWidth();
 
   const handleArticleEnter = () => {
     if (!smallScreen) {

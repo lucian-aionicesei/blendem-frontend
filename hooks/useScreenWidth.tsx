@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
 
-const useScreenWidth = (): number => {
-  const [screenWidth, setScreenWidth] = useState<number>(-1);
+const useScreenWidth = () => {
+  const [windowSize, setWindowSize] = useState({
+    screenWidth: 0,
+    isDesktop: false,
+  });
 
   useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    // Initial screen width
-    setScreenWidth(window.innerWidth);
-
-    // Event listener for window resize
+    function handleResize() {
+      setWindowSize({
+        screenWidth: window.innerWidth,
+        isDesktop: window.innerWidth >= 1023,
+      });
+    }
+    handleResize();
     window.addEventListener("resize", handleResize);
 
-    // Clean up the event listener
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  return screenWidth;
+  return windowSize;
 };
 
 export default useScreenWidth;

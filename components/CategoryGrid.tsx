@@ -11,7 +11,7 @@ const CategoryGrid: React.FC = () => {
   const [scrollTop, setScrollTop] = useState(0);
   const [smallScreen, setSmallScreen] = useState(false);
   const sectionRef = useRef<HTMLInputElement>(null);
-  const screenWidth = useScreenWidth();
+  const { screenWidth } = useScreenWidth();
   const router = useRouter();
   const currentPath = router.route;
 

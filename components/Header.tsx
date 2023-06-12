@@ -12,7 +12,7 @@ import { Response } from "@/utils/interfaces";
 const Header = () => {
   const router = useRouter();
   const currentPath = router.route;
-  const screenWidth = useScreenWidth();
+  const { isDesktop } = useScreenWidth();
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,7 +23,6 @@ const Header = () => {
   const [availableRegions, setAvailableRegions] = useState<string[] | null>(
     null
   );
-  const renderOnMobile = screenWidth < 1023 ? true : false;
 
   useEffect(() => {
     Storyblok.get(`cdn/stories`, {
@@ -59,11 +58,11 @@ const Header = () => {
   }, [router.events]);
 
   useEffect(() => {
-    if (screenWidth > 1023) {
+    if (isDesktop) {
       setToggleMenu(false);
       document.body.style.overflow = "auto";
     }
-  }, [screenWidth]);
+  }, [isDesktop]);
 
   useEffect(() => {
     if (!toggleMenu) {
@@ -129,7 +128,7 @@ const Header = () => {
             priority={true}
           ></Image>
         </Link>
-        {!renderOnMobile && (
+        {isDesktop && (
           <nav className=" hidden lg:block">
             <ul className="flex gap-x-7 uppercase text-base items-center">
               <HeaderLink path="/" name="Home" />
@@ -147,7 +146,7 @@ const Header = () => {
             </ul>
           </nav>
         )}
-        {renderOnMobile && (
+        {!isDesktop && (
           <div
             onClick={setMenuState}
             className="block lg:hidden cursor-pointer py-2"
@@ -186,7 +185,7 @@ const Header = () => {
           </div>
         )}
       </div>
-      {renderOnMobile && (
+      {!isDesktop && (
         <nav
           className={`backdrop-blur-md bg-black/30 h-screen w-full ml-auto pb-20 ease-in-out duration-500 ${
             toggleMenu ? "translate-x-0" : "translate-x-full"
