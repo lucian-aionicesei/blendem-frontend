@@ -94,7 +94,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPos]);
+  }, []);
 
   function setMenuState() {
     setToggleMenu(() => !toggleMenu);
@@ -103,9 +103,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full h-0 z-50">
       <div
-        className={`${
-          visible ? "translate-y-0" : "-translate-y-full"
-        } flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in-out duration-300 ${
+        className={`flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in-out duration-300 ${
           (currentPath === "/" || currentPath === "/works/[slug]") &&
           !toggleMenu
             ? isScrolled && "bg-project-black"

@@ -21,6 +21,7 @@ module.exports = {
         "project-pink": "#D51880",
         "project-dark-gray": "#3D3738",
         "project-gray": "#AEAEAE",
+        "project-dark-black": "#0F0F0F",
       },
       keyframes: {
         slideOut: {

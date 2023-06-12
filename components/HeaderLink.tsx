@@ -19,34 +19,30 @@ const HeaderLink = ({
 
   const isActive =
     currentPath === path || currentPath.includes(`${path}/[slug]`)
-      ? "border-project-green bg-project-green font-bold"
+      ? "border-project-green bg-project-green font-semibold"
       : "group";
 
   return (
     <>
       {!burgerMenu ? (
         <li className={`relative group overflow-hidden ${isActive}`}>
-          <Link
-            href={path}
-            className="block px-4 py-3 ease-in-out duration-500 group-hover:-translate-y-full"
-          >
-            {name}
+          <Link href={path}>
+            <span className="block px-4 py-3 ease-in-out duration-500 group-hover:-translate-y-full">
+              {name}
+            </span>
+            <span className="block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-500">
+              {name}
+            </span>
+            <span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span>
           </Link>
-          <Link
-            href={path}
-            className="block px-4 py-3 absolute group-hover:-translate-y-full ease-in-out duration-500"
-          >
-            {name}
-          </Link>
-          <span className="absolute left-1/2 bottom-0 border-b-2 w-0 border-project-green transition-all duration-300 ease-in-out group-hover:w-full transform -translate-x-1/2"></span>
         </li>
       ) : (
         <li>
           <Link
-            className={`hover:font-bold ${
+            className={`hover:font-extrabold ${
               (currentPath === path ||
                 currentPath.includes(`${path}/[slug]`)) &&
-              "font-bold text-project-green"
+              "font-extrabold text-project-green"
             }`}
             onClick={setMenuState}
             href={path}

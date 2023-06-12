@@ -1,7 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
-const HeroVideo = ({ categoryVideo = false }) => {
+const HeroVideo = ({
+  categoryVideo,
+  category,
+}: {
+  categoryVideo: boolean;
+  category: string;
+}) => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [phoneScreen, setPhoneScreen] = useState(false);
   const [playVideo, setPlayVideo] = useState(true);
@@ -111,19 +117,12 @@ const HeroVideo = ({ categoryVideo = false }) => {
         {categoryVideo && (
           <article className=" group text-5xl sm:text-7xl uppercase font-extrabold bg-black/60 px-10 flex items-center justify-center relative overflow-hidden w-full sm:w-auto">
             <h1
-              className={`h-full py-7 ease-in-out duration-300 group-hover:-translate-y-full ${
+              className={`h-full py-7 ease-in-out duration-300 ${
                 showAnimation ? "translate-y-0" : "-translate-y-full"
               }`}
             >
-              Documentary
+              {category}
             </h1>
-            <h2
-              className={`h-full py-7 absolute ease-in-out duration-300 translate-y-full group-hover:-translate-y-0 ${
-                showAnimation ? "translate-y-full" : "-translate-y-0"
-              }`}
-            >
-              Documentary
-            </h2>
           </article>
         )}
       </div>
