@@ -1,9 +1,5 @@
 const Works = () => {
-  return (
-    <main className=" pt-[5.5rem]">
-      <h1>Contact</h1>
-    </main>
-  );
+  return <main className=" pt-20"></main>;
 };
 
 export default Works;
