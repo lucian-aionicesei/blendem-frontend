@@ -149,7 +149,7 @@ const Header = () => {
           toggleMenu ? "translate-x-0" : "translate-x-full"
         } z-10`}
       >
-        <ul className="px-5 md:px-14 text-7xl h-full flex flex-col justify-center gap-y-10 text-right">
+        <ul className="px-5 md:px-14 text-5xl sm:text-6xl h-full flex flex-col justify-center gap-y-10 text-right">
           <HeaderLink
             path="/"
             name="Home"
