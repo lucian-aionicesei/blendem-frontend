@@ -1,7 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
-const HeroVideo = ({ categoryVideo = false }) => {
+const HeroVideo = ({
+  categoryVideo,
+  category,
+}: {
+  categoryVideo: boolean;
+  category: string;
+}) => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [phoneScreen, setPhoneScreen] = useState(false);
   const [playVideo, setPlayVideo] = useState(true);
@@ -115,7 +121,7 @@ const HeroVideo = ({ categoryVideo = false }) => {
                 showAnimation ? "translate-y-0" : "-translate-y-full"
               }`}
             >
-              Documentary
+              {category}
             </h1>
           </article>
         )}

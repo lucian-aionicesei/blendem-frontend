@@ -13,8 +13,6 @@ const Header = () => {
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const handleRouteChange = () => {
@@ -47,11 +45,6 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const currentScrollPos = window.pageYOffset;
-
-      setVisible(prevScrollPos > currentScrollPos);
-
-      setPrevScrollPos(currentScrollPos);
 
       if (scrollPosition > 0) {
         setIsScrolled(true);
@@ -65,7 +58,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPos]);
+  }, []);
 
   function setMenuState() {
     setToggleMenu(() => !toggleMenu);
@@ -74,9 +67,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full h-0 z-50">
       <div
-        className={`${
-          visible ? "translate-y-0" : "-translate-y-full"
-        } flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in-out duration-300 ${
+        className={`flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in-out duration-300 ${
           (currentPath === "/" || currentPath === "/works/[slug]") &&
           !toggleMenu
             ? isScrolled && "bg-project-black"
