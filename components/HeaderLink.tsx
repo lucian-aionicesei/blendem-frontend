@@ -39,10 +39,10 @@ const HeaderLink = ({
       ) : (
         <li>
           <Link
-            className={`hover:font-extrabold ${
+            className={`hover:font-bold ${
               (currentPath === path ||
                 currentPath.includes(`${path}/[slug]`)) &&
-              "font-extrabold text-project-green"
+              "font-bold text-project-green"
             }`}
             onClick={setMenuState}
             href={path}
