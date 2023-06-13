@@ -11,16 +11,14 @@ export default function LanguageSelector({
   setShowOptions,
   navOpen,
   isMobile,
-  availableRegions,
 }: {
   showOptions: boolean;
   setShowOptions: Dispatch<SetStateAction<boolean>>;
   navOpen: boolean;
   isMobile?: boolean;
-  availableRegions: string[] | null;
 }) {
   const router = useRouter();
-  console.log(useContext(HomePageContext));
+  const availableRegions = useContext(HomePageContext);
 
   return (
     <li

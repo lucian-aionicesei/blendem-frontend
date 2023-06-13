@@ -2,7 +2,6 @@ import { useSwiperSlide } from "swiper/react";
 
 const SlideTitle = ({ title }: { title: string }) => {
   const swiperSlide = useSwiperSlide();
-  //   console.log(title, swiperSlide.isActive);
 
   return (
     <div className="absolute left-0 bottom-0 font-semibold text-xl md:text-2xl pb-6 sm:pl-10 md:pl-14 lg:pl-20 text-center w-full sm:w-fit">

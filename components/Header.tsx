@@ -6,8 +6,6 @@ import Image from "next/image";
 import siteLogo from "../public/logo-white.png";
 import HeaderLink from "./HeaderLink";
 import LanguageSelector from "./LanguageSelector";
-import { Storyblok, config } from "@/utils/shared";
-import { Response } from "@/utils/interfaces";
 
 const Header = () => {
   const router = useRouter();
@@ -16,27 +14,8 @@ const Header = () => {
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
   const [showOptions, setShowOptions] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-  const [availableRegions, setAvailableRegions] = useState<string[] | null>(
-    null
-  );
-
-  useEffect(() => {
-    Storyblok.get(`cdn/stories`, {
-      token: config.token,
-      is_startpage: true,
-      sort_by: "position:asc",
-    })
-      .then(async ({ data: { stories } }: Response) => {
-        setAvailableRegions(stories.map(({ slug }) => slug));
-      })
-      .catch(() => {
-        console.log("error");
-      });
-  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -75,11 +54,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const currentScrollPos = window.pageYOffset;
 
-      setVisible(prevScrollPos > currentScrollPos);
-
-      setPrevScrollPos(currentScrollPos);
       setShowOptions(false);
 
       if (scrollPosition > 0) {
@@ -133,14 +108,11 @@ const Header = () => {
               <HeaderLink path="/works" name="Works" />
               <HeaderLink path="/about" name="About" />
               <HeaderLink path="/contact" name="Contact" />
-              {availableRegions && (
-                <LanguageSelector
-                  navOpen={navOpen}
-                  setShowOptions={setShowOptions}
-                  showOptions={showOptions}
-                  availableRegions={availableRegions}
-                />
-              )}
+              <LanguageSelector
+                navOpen={navOpen}
+                setShowOptions={setShowOptions}
+                showOptions={showOptions}
+              />
             </ul>
           </nav>
         )}
@@ -215,15 +187,12 @@ const Header = () => {
               burgerMenu={true}
             />
 
-            {availableRegions && (
-              <LanguageSelector
-                navOpen={navOpen}
-                setShowOptions={setShowOptions}
-                showOptions={showOptions}
-                isMobile={true}
-                availableRegions={availableRegions}
-              />
-            )}
+            <LanguageSelector
+              navOpen={navOpen}
+              setShowOptions={setShowOptions}
+              showOptions={showOptions}
+              isMobile={true}
+            />
           </ul>
         </nav>
       )}

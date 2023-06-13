@@ -35,7 +35,7 @@ export default function Category() {
 
   return (
     <main>
-      <HeroVideo category={`${currentPath}`} categoryVideo={true} />
+      {/* <HeroVideo category={`${currentPath}`} categoryVideo={true} /> */}
       <section className="2xl:container mx-auto my-16 md:my-24 lg:my-32">
         <TextComponent
           title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
@@ -55,7 +55,7 @@ export default function Category() {
           title={project.title}
         />
       ))}
-      <SliderElement slides={sliderContent} />
+      {/* <SliderElement slides={sliderContent} /> */}
       <section className="2xl:container mx-auto my-16 lg:my-24">
         <TextComponent
           textCol1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

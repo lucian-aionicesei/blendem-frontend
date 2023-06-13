@@ -46,6 +46,7 @@ export interface Content {
   heading: string;
   component: string;
   hero_video: HeroVideo;
+  slider_images: ImageAsset[];
 }
 
 export interface HeroVideo {
@@ -60,6 +61,19 @@ export interface HeroVideo {
   fieldtype: string;
   meta_data: MetaData;
   is_external_url: boolean;
+}
+
+export interface ImageAsset {
+  id: number;
+  alt: string;
+  name: string;
+  focus: string;
+  title: string;
+  source: string;
+  filename: string;
+  copyright: string;
+  fieldtype: string;
+  meta_data: MetaData;
 }
 
 export interface MetaData {}

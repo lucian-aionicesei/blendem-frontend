@@ -4,9 +4,11 @@ import Image from "next/image";
 const HeroVideo = ({
   categoryVideo,
   category,
+  videoURL,
 }: {
   categoryVideo: boolean;
   category: string;
+  videoURL: string;
 }) => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [phoneScreen, setPhoneScreen] = useState(false);
@@ -91,7 +93,7 @@ const HeroVideo = ({
           muted
           loop
           className=" w-full h-screen object-cover"
-          src="/hero-video.mp4"
+          src={videoURL}
         ></video>
       ) : (
         <video
@@ -100,7 +102,7 @@ const HeroVideo = ({
           muted
           loop
           className=" w-full h-screen object-cover"
-          src="/hero-video.mp4"
+          src={videoURL}
         ></video>
       )}
       <div className=" absolute top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center">

@@ -28,7 +28,7 @@ const About = () => {
         />
       </section>
       {/* <EmployeesDescription /> */}
-      <SliderElement slides={sliderContent} />
+      {/* <SliderElement slides={sliderContent} /> */}
     </main>
   );
 };

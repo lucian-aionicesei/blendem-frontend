@@ -9,6 +9,15 @@ const nextConfig = {
     // a non-locale prefixed path e.g. `/hello`
     defaultLocale: "en",
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'a.storyblok.com',
+        port: '',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

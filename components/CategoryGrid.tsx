@@ -15,8 +15,6 @@ const CategoryGrid: React.FC = () => {
   const router = useRouter();
   const currentPath = router.route;
 
-  // console.log("categories");
-
   const handleMouseEnter = () => {
     setIsHovering(true);
   };
@@ -26,9 +24,6 @@ const CategoryGrid: React.FC = () => {
   };
 
   const handleMouseMove = (e: MouseEvent): void => {
-    // console.log(e);
-    // console.log("X:" + e.pageX, "Y" + e.pageY);
-    // console.log(sectionPosition.top, sectionPosition.left);
     setIsHovering(true);
     setCursorPosition({
       x: e.pageX - sectionPosition.left,
@@ -45,7 +40,6 @@ const CategoryGrid: React.FC = () => {
 
   useEffect(() => {
     const sectionElement = sectionRef.current;
-    // console.log(scrollTop);
 
     if (sectionElement) {
       // Get the position of the section element

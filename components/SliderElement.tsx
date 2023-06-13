@@ -2,6 +2,7 @@ import { Pagination, A11y, Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { ImageAsset } from "@/utils/interfaces";
 
 // Import Swiper styles
 import "swiper/css";
@@ -10,11 +11,7 @@ import "swiper/css/pagination";
 import SwiperNavButtons from "./SwiperNavButtons";
 import SlideTitle from "./SlideTitle";
 
-interface SliderProps {
-  slides: { title?: string; imgUrl: string }[];
-}
-
-const SliderElement: React.FC<SliderProps> = ({ slides }) => {
+const SliderElement = ({ slides }: { slides: ImageAsset[] }) => {
   const router = useRouter();
   const currentPath = router.route;
 
@@ -31,20 +28,18 @@ const SliderElement: React.FC<SliderProps> = ({ slides }) => {
         spaceBetween={50}
         loop={true}
         pagination={{ clickable: true }}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log("slide change")}
       >
         {slides.map((slideContent, index) => (
           <SwiperSlide key={index} virtualIndex={index}>
             <div className="w-full h-full relative">
               <Image
-                className=" object-cover"
-                src={slideContent.imgUrl}
+                className="object-cover"
+                src={slideContent.filename}
                 fill={true}
                 sizes="(min-width: 1023px) 50vw, 100vw"
                 alt="our team"
-              ></Image>
-              {slideContent.title && <SlideTitle title={slideContent.title} />}
+              />
+              <SlideTitle title={slideContent.name} />
             </div>
           </SwiperSlide>
         ))}
