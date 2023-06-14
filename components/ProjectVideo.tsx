@@ -147,7 +147,7 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
           } w-full h-20 sm:h-24 lg:h-32 from-black/60 px-5 sm:px-10 flex flex-col justify-center`}
         >
           <div className="flex w-full gap-x-5 sm:gap-x-10 items-end">
-            <div className="flex-grow">
+            <div className="flex-grow flex flex-col gap-y-2">
               <span className=" text-xl md:text-2xl lg:text-3xl font-bold">
                 {title}
               </span>
@@ -159,7 +159,7 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
                   isPlaying || fullScreen ? "opacity-100" : "opacity-0"
                 } w-full h-2 cursor-pointer flex items-center ease-in-out duration-300`}
               >
-                <div className="w-full h-[1px] bg-white">
+                <div className="w-full h-[2px] bg-white">
                   <div
                     className="h-full bg-project-pink"
                     style={{ width: calculateWidth(timelineProgress) }}

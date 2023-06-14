@@ -17,7 +17,7 @@ export default function Category() {
 
   const projects = [
     {
-      videoUrl: "/videos/Culture_15sec.mp4",
+      videoUrl: "/videos/culture.mp4",
       imgUrl: "/culture.png",
       title: "Modern art demo - Cluj",
     },
@@ -27,7 +27,7 @@ export default function Category() {
       title: "Cooper commercial",
     },
     {
-      videoUrl: "/videos/Nature_15sec.mp4",
+      videoUrl: "/videos/nature.mp4",
       imgUrl: "/nature.png",
       title: "Eager travellers",
     },
