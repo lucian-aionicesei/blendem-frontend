@@ -70,8 +70,8 @@ const Header = () => {
         className={`flex justify-between items-center px-5 md:px-14 h-20 z-10 ease-in-out duration-300 ${
           (currentPath === "/" || currentPath === "/works/[slug]") &&
           !toggleMenu
-            ? isScrolled && "bg-project-black"
-            : "bg-project-black"
+            ? isScrolled && "backdrop-blur-sm bg-black/30"
+            : "backdrop-blur-sm bg-black/30"
         }`}
       >
         <Link
@@ -136,7 +136,7 @@ const Header = () => {
         </div>
       </div>
       <nav
-        className={`backdrop-blur-md bg-black/30 h-screen w-full ml-auto pb-20 ease-in-out duration-500 ${
+        className={`backdrop-blur-sm bg-black/30 h-screen w-full ml-auto pb-20 ease-in-out duration-500 ${
           toggleMenu ? "translate-x-0" : "translate-x-full"
         } z-10`}
       >
