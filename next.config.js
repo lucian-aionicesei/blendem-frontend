@@ -13,6 +13,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 's3.amazonaws.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'a.storyblok.com',
         port: '',
       },

@@ -4,7 +4,7 @@ import OurTeam from "@/components/OurTeam";
 import SliderElement from "@/components/SliderElement";
 import ContactCard from "@/components/ContactCard";
 import { useRouter } from "next/router";
-import { Content } from "@/utils/interfaces";
+import { HomeStoryContent } from "@/utils/interfaces";
 
 import { Storyblok, config } from "@/utils/shared";
 import { Response } from "@/utils/interfaces";
@@ -13,7 +13,9 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const router = useRouter();
 
-  const [homePageContent, setHomePageContent] = useState<Content | undefined>();
+  const [homePageContent, setHomePageContent] = useState<
+    HomeStoryContent | undefined
+  >();
 
   useEffect(() => {
     Storyblok.get(`cdn/stories`, {
@@ -27,9 +29,8 @@ export default function Home() {
       },
     })
       .then(async ({ data: { stories } }: Response) => {
-        setHomePageContent(stories[0].content);
-        // setHomePageContent(stories[0].content.hero_video.filename);
-        console.log(stories[0].content.slider_images);
+        "hero_video" in stories[0].content &&
+          setHomePageContent(stories[0].content);
       })
       .catch(() => {
         console.log("error");
@@ -42,7 +43,10 @@ export default function Home() {
         <HeroVideo
           category="none"
           categoryVideo={false}
-          videoURL={homePageContent.hero_video.filename}
+          videoURL={homePageContent.hero_video.filename.replace(
+            "https://",
+            "https://s3.amazonaws.com/"
+          )}
         />
         <CategoryGrid />
         <OurTeam

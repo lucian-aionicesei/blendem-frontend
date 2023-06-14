@@ -16,13 +16,18 @@ export interface Data {
   links: any[];
 }
 
+export interface BaseContent {
+  _uid: string;
+  component: string;
+}
+
 export interface Story {
   name: string;
   created_at: Date;
   published_at: Date;
   id: number;
   uuid: string;
-  content: Content;
+  content: HomeStoryContent | WorkPageContent;
   slug: string;
   full_slug: string;
   sort_by_date: null;
@@ -41,10 +46,8 @@ export interface Story {
   translated_slugs: null;
 }
 
-export interface Content {
-  _uid: string;
+export interface HomeStoryContent extends BaseContent {
   heading: string;
-  component: string;
   hero_video: HeroVideo;
   slider_images: ImageAsset[];
 }
@@ -84,4 +87,55 @@ export interface Headers {
   "content-type": string;
   "per-page": string;
   total: string;
+}
+
+export interface WorkPageContent extends BaseContent {
+  work_title: string;
+  intro_header: string;
+  preview_image: PreviewImage;
+  preview_video: PreviewVideo;
+  category_videos: CategoryVideo[];
+  first_paragraph: string;
+  second_paragraph: string;
+}
+
+export interface PreviewImage {
+  id: number;
+  alt: string;
+  name: string;
+  focus: string;
+  title: string;
+  source: string;
+  filename: string;
+  copyright: string;
+  fieldtype: string;
+  meta_data: MetaData;
+  is_external_url: boolean;
+}
+
+export interface PreviewVideo {
+  id: number;
+  alt: string;
+  name: string;
+  focus: string;
+  title: string;
+  source: string;
+  filename: string;
+  copyright: string;
+  fieldtype: string;
+  meta_data: MetaData;
+  is_external_url: boolean;
+}
+
+export interface CategoryVideo {
+  id: number;
+  alt: string;
+  name: string;
+  focus: string;
+  title: string;
+  source: string;
+  filename: string;
+  copyright: string;
+  fieldtype: string;
+  meta_data: MetaData;
 }

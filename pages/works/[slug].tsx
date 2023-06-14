@@ -1,20 +1,7 @@
-import HeroVideo from "@/components/HeroVideo";
-import { useRouter } from "next/router";
-import SliderElement from "@/components/SliderElement";
 import ProjectVideo from "@/components/ProjectVideo";
 import TextComponent from "@/components/TextCoponent";
 
 export default function Category() {
-  const router = useRouter();
-  const currentPath = router.query.slug;
-
-  const sliderContent = [
-    { title: "Drone action", imgUrl: "/nature.png" },
-    { title: "Live broadcasting", imgUrl: "/broadcast.png" },
-    { title: "Set on site", imgUrl: "/documentary.png" },
-    { imgUrl: "/our-team.png" },
-  ];
-
   const projects = [
     {
       videoUrl: "/videos/Culture_15sec.mp4",

@@ -4,6 +4,14 @@ import useScreenWidth from "../hooks/useScreenWidth";
 import React, { MouseEvent } from "react";
 import { useRouter } from "next/router";
 
+import { Storyblok, config } from "@/utils/shared";
+import {
+  WorkPageContent,
+  Response,
+  Story,
+  HomeStoryContent,
+} from "@/utils/interfaces";
+
 const CategoryGrid: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -14,6 +22,7 @@ const CategoryGrid: React.FC = () => {
   const { screenWidth } = useScreenWidth();
   const router = useRouter();
   const currentPath = router.route;
+  const [works, setWorks] = useState<Story[] | undefined>();
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -37,6 +46,20 @@ const CategoryGrid: React.FC = () => {
       window.pageYOffset || document.documentElement.scrollTop;
     setScrollTop(newScrollTop);
   };
+
+  useEffect(() => {
+    Storyblok.get(`cdn/stories`, {
+      token: config.token,
+      sort_by: "position:desc",
+      starts_with: `blendem/${router.locale}/works/`,
+    })
+      .then(async ({ data: { stories } }: Response) => {
+        setWorks(stories);
+      })
+      .catch(() => {
+        console.log("error");
+      });
+  }, [router.locale]);
 
   useEffect(() => {
     const sectionElement = sectionRef.current;
@@ -93,12 +116,38 @@ const CategoryGrid: React.FC = () => {
             </div>
           </div>
         )}
-        <GridVideo
-          videoUrl={"/videos/Documentary_15sec.mp4"}
-          imgUrl={"/documentary.png"}
-          category={"documentary"}
-        />
-        <GridVideo
+        {/* 
+videoURL={homePageContent.hero_video.filename.replace(
+            "https://",
+            "https://s3.amazonaws.com/"
+          )} */}
+
+        {works &&
+          works.map(
+            ({ content }: { content: WorkPageContent | HomeStoryContent }) => {
+              if (content.component === "Work") {
+                const workPageContent = content as WorkPageContent;
+                return (
+                  <GridVideo
+                    key={workPageContent._uid}
+                    videoUrl={workPageContent.preview_video?.filename?.replace(
+                      "https://",
+                      "https://s3.amazonaws.com/"
+                    )}
+                    imgUrl={workPageContent.preview_image.filename.replace(
+                      "https://",
+                      "https://s3.amazonaws.com/"
+                    )}
+                    category={workPageContent.work_title.toLowerCase()}
+                  />
+                );
+              } else {
+                console.log(content);
+                return null;
+              }
+            }
+          )}
+        {/* <GridVideo
           videoUrl={"/videos/Industry_15sec.mp4"}
           imgUrl={"/industry.png"}
           category={"industry"}
@@ -132,7 +181,7 @@ const CategoryGrid: React.FC = () => {
           videoUrl={"/videos/Creative_15sec.mp4"}
           imgUrl={"/creative.png"}
           category={"creative"}
-        />
+        /> */}
       </div>
     </section>
   );
