@@ -301,7 +301,7 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
           </div>
         </div>
       </div>
-      {/* <div
+      <div
         className={` absolute top-0 left-0 h-full w-full pointer-events-none ease-in-out duration-700 ${
           isPlaying || fullScreen ? "opacity-0" : "opacity-100"
         }`}
@@ -314,7 +314,7 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
           alt="project name"
         ></Image>
         <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
-      </div> */}
+      </div>
     </section>
   );
 };

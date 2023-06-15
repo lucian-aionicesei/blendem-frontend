@@ -7,10 +7,36 @@ import { useRouter } from "next/router";
 import { HomeStoryContent } from "@/utils/interfaces";
 
 import { Storyblok, config } from "@/utils/shared";
-import { Response } from "@/utils/interfaces";
+import { Response, Story } from "@/utils/interfaces";
 import { useEffect, useState } from "react";
+import { GetStaticProps } from "next";
 
-export default function Home() {
+export const getStaticProps: GetStaticProps = async (context) => {
+  try {
+    const response = await Storyblok.get("cdn/stories", {
+      token: config.token,
+      sort_by: "position:desc",
+      starts_with: `blendem/${context.locale}/works/`,
+    });
+
+    const works = response.data.stories;
+
+    return {
+      props: {
+        works,
+      },
+    };
+  } catch (error) {
+    console.log("Error:", error);
+    return {
+      props: {
+        works: [],
+      },
+    };
+  }
+};
+
+export default function Home({ works }: { works: Story[] }) {
   const router = useRouter();
 
   const [homePageContent, setHomePageContent] = useState<
@@ -48,7 +74,7 @@ export default function Home() {
             "https://s3.amazonaws.com/"
           )}
         />
-        <CategoryGrid />
+        <CategoryGrid works={works} />
         <OurTeam
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

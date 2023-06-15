@@ -4,15 +4,9 @@ import useScreenWidth from "../hooks/useScreenWidth";
 import React, { MouseEvent } from "react";
 import { useRouter } from "next/router";
 
-import { Storyblok, config } from "@/utils/shared";
-import {
-  WorkPageContent,
-  Response,
-  Story,
-  HomeStoryContent,
-} from "@/utils/interfaces";
+import { WorkPageContent, Story, HomeStoryContent } from "@/utils/interfaces";
 
-const CategoryGrid: React.FC = () => {
+const CategoryGrid = ({ works }: { works: Story[] }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [sectionPosition, setSectionPosition] = useState({ top: 0, left: 0 });
@@ -22,7 +16,6 @@ const CategoryGrid: React.FC = () => {
   const { screenWidth } = useScreenWidth();
   const router = useRouter();
   const currentPath = router.route;
-  const [works, setWorks] = useState<Story[] | undefined>();
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -46,20 +39,6 @@ const CategoryGrid: React.FC = () => {
       window.pageYOffset || document.documentElement.scrollTop;
     setScrollTop(newScrollTop);
   };
-
-  useEffect(() => {
-    Storyblok.get(`cdn/stories`, {
-      token: config.token,
-      sort_by: "position:desc",
-      starts_with: `blendem/${router.locale}/works/`,
-    })
-      .then(async ({ data: { stories } }: Response) => {
-        setWorks(stories);
-      })
-      .catch(() => {
-        console.log("error");
-      });
-  }, [router.locale]);
 
   useEffect(() => {
     const sectionElement = sectionRef.current;
