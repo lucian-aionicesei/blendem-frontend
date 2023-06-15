@@ -19,13 +19,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths,
-      fallback: false,
+      fallback: true,
     };
   } catch (error) {
     console.log("Error:", error);
     return {
       paths: [],
-      fallback: false,
+      fallback: true,
     };
   }
 };
@@ -71,7 +71,6 @@ export default function Category({
 }: {
   work: Story & { content: WorkPageContent };
 }) {
-  console.log(work);
   const projects = [
     {
       videoUrl: "/videos/Culture_15sec.mp4",
@@ -91,26 +90,28 @@ export default function Category({
   ];
 
   return (
-    <main>
-      {/* <HeroVideo category={`${currentPath}`} categoryVideo={true} /> */}
-      <section className="2xl:container mx-auto my-16 md:my-24 lg:my-32">
-        <TextComponent
-          title={work.content.intro_header}
-          textCol1={work.content.first_paragraph}
-        />
-      </section>
-      {projects.map((project) => (
-        <ProjectVideo
-          key={project.title}
-          videoUrl={project.videoUrl}
-          imgUrl={project.imgUrl}
-          title={project.title}
-        />
-      ))}
-      {/* <SliderElement slides={sliderContent} /> */}
-      <section className="2xl:container mx-auto my-16 lg:my-24">
-        <TextComponent textCol1={work.content.second_paragraph} />
-      </section>
-    </main>
+    work && (
+      <main>
+        {/* <HeroVideo category={`${currentPath}`} categoryVideo={true} /> */}
+        <section className="2xl:container mx-auto my-16 md:my-24 lg:my-32">
+          <TextComponent
+            title={work.content.intro_header}
+            textCol1={work.content.first_paragraph}
+          />
+        </section>
+        {projects.map((project) => (
+          <ProjectVideo
+            key={project.title}
+            videoUrl={project.videoUrl}
+            imgUrl={project.imgUrl}
+            title={project.title}
+          />
+        ))}
+        {/* <SliderElement slides={sliderContent} /> */}
+        <section className="2xl:container mx-auto my-16 lg:my-24">
+          <TextComponent textCol1={work.content.second_paragraph} />
+        </section>
+      </main>
+    )
   );
 }
