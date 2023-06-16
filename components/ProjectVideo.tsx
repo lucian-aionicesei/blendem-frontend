@@ -19,6 +19,7 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
   const progressBarRef = useRef<HTMLDivElement>(null);
   const [timelineProgress, setTimelineProgress] = useState(0);
   const [fullScreen, setFullScreen] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   const [videoContainerRef, inView] = useInView({
     root: null,
@@ -167,137 +168,174 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
                 </div>
               </div>
             </div>
-            {fullScreen ? (
-              <svg
-                onClick={() => {
-                  setFullScreen(false);
-                }}
-                className={`mb-1 cursor-pointer hover:scale-110 duration-100 ease-in-out`}
-                width="29"
-                height="27"
-                viewBox="0 0 29 27"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="10"
-                  y="17"
-                  width="10"
-                  height="2"
-                  transform="rotate(90 10 17)"
-                  fill="white"
-                />
-                <rect
-                  x="-6.10352e-05"
-                  y="17"
-                  width="10"
-                  height="2"
-                  fill="white"
-                />
-                <rect
-                  x="10"
-                  y="10"
-                  width="10"
-                  height="2"
-                  transform="rotate(-180 10 10)"
-                  fill="white"
-                />
-                <rect
-                  x="10"
-                  width="10"
-                  height="2"
-                  transform="rotate(90 10 0)"
-                  fill="white"
-                />
-                <rect
-                  x="19"
-                  y="10"
-                  width="10"
-                  height="2"
-                  transform="rotate(-90 19 10)"
-                  fill="white"
-                />
-                <rect
-                  x="29.0001"
-                  y="10"
-                  width="10"
-                  height="2"
-                  transform="rotate(180 29.0001 10)"
-                  fill="white"
-                />
-                <rect x="19" y="17" width="10" height="2" fill="white" />
-                <rect
-                  x="19"
-                  y="27"
-                  width="10"
-                  height="2"
-                  transform="rotate(-90 19 27)"
-                  fill="white"
-                />
-              </svg>
-            ) : (
-              <svg
-                onClick={() => {
-                  setFullScreen(true);
-                }}
-                className={`${
-                  isPlaying ? "opacity-100" : "opacity-0"
-                }  mb-1 cursor-pointer hover:scale-110 ease-in-out duration-100`}
-                width="29"
-                height="27"
-                viewBox="0 0 29 27"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  y="27"
-                  width="10"
-                  height="2"
-                  transform="rotate(-90 0 27)"
-                  fill="white"
-                />
-                <rect
-                  x="10"
-                  y="27"
-                  width="10"
-                  height="2"
-                  transform="rotate(180 10 27)"
-                  fill="white"
-                />
-                <rect width="10" height="2" fill="white" />
-                <rect
-                  y="10"
-                  width="10"
-                  height="2"
-                  transform="rotate(-90 0 10)"
-                  fill="white"
-                />
-                <rect
-                  x="29"
-                  width="10"
-                  height="2"
-                  transform="rotate(90 29 0)"
-                  fill="white"
-                />
-                <rect x="19" width="10" height="2" fill="white" />
-                <rect
-                  x="29"
-                  y="27"
-                  width="10"
-                  height="2"
-                  transform="rotate(180 29 27)"
-                  fill="white"
-                />
-                <rect
-                  x="29"
-                  y="17"
-                  width="10"
-                  height="2"
-                  transform="rotate(90 29 17)"
-                  fill="white"
-                />
-              </svg>
-            )}
+            <div className="flex items-center gap-x-4 sm:gap-x-6">
+              {fullScreen && (
+                <svg
+                  className="mb-1"
+                  width="29"
+                  height="24"
+                  viewBox="0 0 29 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <mask id="path-1-inside-1_797_247" fill="white">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M6.49514 17.2373H2C0.89543 17.2373 0 16.3419 0 15.2373V7.88953C0 6.78496 0.895431 5.88953 2 5.88953H7.57777L13.3723 1.21709C14.0264 0.689622 15 1.15523 15 1.99553V22.0043C15 22.8446 14.0264 23.3102 13.3723 22.7827L6.49514 17.2373Z"
+                    />
+                  </mask>
+                  <path
+                    d="M6.49514 17.2373L7.75056 15.6804L7.20104 15.2373H6.49514V17.2373ZM7.57777 5.88953V7.88953H8.28368L8.83319 7.44643L7.57777 5.88953ZM13.3723 1.21709L14.6277 2.77399L14.6277 2.77399L13.3723 1.21709ZM13.3723 22.7827L14.6277 21.2258L14.6277 21.2258L13.3723 22.7827ZM6.49514 15.2373H2V19.2373H6.49514V15.2373ZM2 15.2373H2H-2C-2 17.4464 -0.209139 19.2373 2 19.2373V15.2373ZM2 15.2373V7.88953H-2V15.2373H2ZM2 7.88953V7.88953V3.88953C-0.209138 3.88953 -2 5.68039 -2 7.88953H2ZM2 7.88953H7.57777V3.88953H2V7.88953ZM8.83319 7.44643L14.6277 2.77399L12.1169 -0.339811L6.32236 4.33263L8.83319 7.44643ZM14.6277 2.77399C13.9736 3.30144 13 2.83585 13 1.99553H17C17 -0.525391 14.0793 -1.9222 12.1169 -0.339811L14.6277 2.77399ZM13 1.99553V22.0043H17V1.99553H13ZM13 22.0043C13 21.164 13.9736 20.6984 14.6277 21.2258L12.1169 24.3396C14.0793 25.922 17 24.5252 17 22.0043H13ZM14.6277 21.2258L7.75056 15.6804L5.23973 18.7942L12.1169 24.3396L14.6277 21.2258Z"
+                    fill="white"
+                    mask="url(#path-1-inside-1_797_247)"
+                  />
+                  <path
+                    d="M22.6923 22.231C26.1752 18.6062 31.0513 9.28537 22.6923 1.00019"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M18.9999 19.4614C21.7862 16.7823 25.6871 9.89295 18.9999 3.76912"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              )}
+              {fullScreen ? (
+                <svg
+                  onClick={() => {
+                    setFullScreen(false);
+                  }}
+                  className={`mb-1 cursor-pointer hover:scale-110 duration-100 ease-in-out`}
+                  width="29"
+                  height="27"
+                  viewBox="0 0 29 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="10"
+                    y="17"
+                    width="10"
+                    height="2"
+                    transform="rotate(90 10 17)"
+                    fill="white"
+                  />
+                  <rect
+                    x="-6.10352e-05"
+                    y="17"
+                    width="10"
+                    height="2"
+                    fill="white"
+                  />
+                  <rect
+                    x="10"
+                    y="10"
+                    width="10"
+                    height="2"
+                    transform="rotate(-180 10 10)"
+                    fill="white"
+                  />
+                  <rect
+                    x="10"
+                    width="10"
+                    height="2"
+                    transform="rotate(90 10 0)"
+                    fill="white"
+                  />
+                  <rect
+                    x="19"
+                    y="10"
+                    width="10"
+                    height="2"
+                    transform="rotate(-90 19 10)"
+                    fill="white"
+                  />
+                  <rect
+                    x="29.0001"
+                    y="10"
+                    width="10"
+                    height="2"
+                    transform="rotate(180 29.0001 10)"
+                    fill="white"
+                  />
+                  <rect x="19" y="17" width="10" height="2" fill="white" />
+                  <rect
+                    x="19"
+                    y="27"
+                    width="10"
+                    height="2"
+                    transform="rotate(-90 19 27)"
+                    fill="white"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  onClick={() => {
+                    setFullScreen(true);
+                  }}
+                  className={`${
+                    isPlaying ? "opacity-100" : "opacity-0"
+                  }  mb-1 cursor-pointer hover:scale-110 ease-in-out duration-100`}
+                  width="29"
+                  height="27"
+                  viewBox="0 0 29 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    y="27"
+                    width="10"
+                    height="2"
+                    transform="rotate(-90 0 27)"
+                    fill="white"
+                  />
+                  <rect
+                    x="10"
+                    y="27"
+                    width="10"
+                    height="2"
+                    transform="rotate(180 10 27)"
+                    fill="white"
+                  />
+                  <rect width="10" height="2" fill="white" />
+                  <rect
+                    y="10"
+                    width="10"
+                    height="2"
+                    transform="rotate(-90 0 10)"
+                    fill="white"
+                  />
+                  <rect
+                    x="29"
+                    width="10"
+                    height="2"
+                    transform="rotate(90 29 0)"
+                    fill="white"
+                  />
+                  <rect x="19" width="10" height="2" fill="white" />
+                  <rect
+                    x="29"
+                    y="27"
+                    width="10"
+                    height="2"
+                    transform="rotate(180 29 27)"
+                    fill="white"
+                  />
+                  <rect
+                    x="29"
+                    y="17"
+                    width="10"
+                    height="2"
+                    transform="rotate(90 29 17)"
+                    fill="white"
+                  />
+                </svg>
+              )}
+            </div>
           </div>
         </div>
       </div>

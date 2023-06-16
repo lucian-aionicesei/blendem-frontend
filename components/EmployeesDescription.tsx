@@ -1,16 +1,28 @@
-import Image from "next/image";
+import EmployeeCard from "./EmployeeCard";
 
-const EmployeesDescription = () => {
+interface EmployeesDescriptionProps {
+  employees: {
+    imgUrl: string;
+    name: string;
+    jobTitle: string;
+    description: string;
+  }[];
+}
+
+const EmployeesDescription: React.FC<EmployeesDescriptionProps> = ({
+  employees,
+}) => {
   return (
-    <section className="sm:mx-5 md:mx-14 mb-12 lg:mb-16 flex flex-wrap items-center justify-around">
-      <article className="relative">
-        <Image
-          src="/portrait.jpeg"
-          fill={true}
-          sizes="(min-width: 1023px) 50vw, 100vw"
-          alt="our team"
-        ></Image>
-      </article>
+    <section className="sm:mx-5 md:mx-14 mb-12 lg:mb-24 gap-y-16 lg:gap-y-24 gap-x-24 flex flex-wrap items-center justify-around">
+      {employees.map((employee, index) => (
+        <EmployeeCard
+          key={index}
+          imgUrl={employee.imgUrl}
+          name={employee.name}
+          jobTitle={employee.jobTitle}
+          description={employee.description}
+        />
+      ))}
     </section>
   );
 };
