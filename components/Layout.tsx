@@ -3,30 +3,38 @@ import SiteFooter from "./SiteFooter";
 import React, { useState, useEffect } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  // console.log(isLoading);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    document.body.style.overflow = "hidden";
+
+    setIsLoaded(true);
+
+    // Run after 3 seconds
+    const timer = setTimeout(() => {
+      document.body.style.overflow = "auto";
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div>
-      <div className="absolute h-screen w-full top-0 left-0 z-[100] flex items-center justify-center pointer-events-none">
+      <div className="fixed h-screen w-full top-0 left-0 z-[100] flex items-center justify-center pointer-events-none">
         <div className="relative w-full h-full">
           <div
             className={`${
-              isLoading ? " -translate-y-full" : "translate-y-0"
+              isLoaded ? " -translate-y-full" : "translate-y-0"
             } ease-in-out duration-500 delay-[2000ms] absolute top-0 left-0 w-full h-full bg-project-black`}
           ></div>
           <div
             className={`${
-              isLoading ? " -translate-y-full" : "translate-y-0"
+              isLoaded ? " -translate-y-full" : "translate-y-0"
             } ease-in-out duration-500 delay-[1500ms] w-full h-full flex flex-col bg-project-dark-black items-center justify-center gap-y-3 md:gap-y-5`}
           >
             <div
               className={`flex gap-x-2 duration-500 ease-in-out ${
-                isLoading
+                isLoaded
                   ? "translate-x-0 opacity-100"
                   : "translate-x-1/2 opacity-0"
               }`}
@@ -48,7 +56,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </svg>
               <svg
                 className={` h-10 md:h-auto w-fit duration-300 ease-in-out ${
-                  isLoading
+                  isLoaded
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-full opacity-0"
                 }`}
@@ -67,7 +75,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </svg>
               <svg
                 className={` h-10 md:h-auto w-fit duration-300 ease-in-out delay-75 ${
-                  isLoading
+                  isLoaded
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-full opacity-0"
                 }`}
@@ -86,7 +94,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </svg>
               <svg
                 className={` h-10 md:h-auto w-fit duration-300 ease-in-out delay-100 ${
-                  isLoading
+                  isLoaded
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-full opacity-0"
                 }`}
@@ -105,7 +113,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </svg>
               <svg
                 className={` h-10 md:h-auto w-fit duration-300 ease-in-out delay-150 ${
-                  isLoading
+                  isLoaded
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-full opacity-0"
                 }`}
@@ -153,7 +161,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </svg>
               <svg
                 className={` h-10 md:h-auto w-fit duration-300 ease-in-out delay-200 transition-all ${
-                  isLoading
+                  isLoaded
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-full opacity-0"
                 }`}
@@ -173,7 +181,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </div>
             <svg
               className={` duration-300 delay-500 ease-in-out h-3 md:h-auto w-fit ${
-                isLoading
+                isLoaded
                   ? "translate-y-0 opacity-100"
                   : " -translate-y-full opacity-0"
               }`}
