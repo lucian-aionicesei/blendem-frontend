@@ -24,10 +24,14 @@ export default function Home() {
         imgUrl="/our-team.png"
       />
       <SliderElement slides={sliderContent} />
-      <ContactCard
-        location="Parcul Industrial Sfantu Gheorghe Cart. Campul Frumos nr.5 520072"
-        email="contact@blendemproduction.com"
-      />
+      <section className="mx-5 md:mx-14 mb-12 lg:mb-16 lg:grid grid-cols-12">
+        <article className=" text-base col-start-4 col-end-10 bg-project-dark-gray text-white p-8 sm:p-12 flex flex-col gap-y-2">
+          <ContactCard
+            location="Parcul Industrial Sfantu Gheorghe Cart. Campul Frumos nr.5 520072"
+            email="contact@blendemproduction.com"
+          />
+        </article>
+      </section>
     </main>
   );
 }
