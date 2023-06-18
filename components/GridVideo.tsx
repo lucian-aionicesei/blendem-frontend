@@ -21,6 +21,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
   const videoElement = videoRef.current;
   const [smallScreen, setSmallScreen] = useState(false);
   const screenWidth = useScreenWidth();
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const handleArticleEnter = () => {
     if (!smallScreen) {
@@ -32,6 +33,10 @@ const GridVideo: React.FC<GridVideoProps> = ({
     if (!smallScreen) {
       videoElement?.pause();
     }
+  };
+
+  const handleVideoLoaded = () => {
+    setVideoLoaded(true);
   };
 
   // Play video when in view
@@ -81,6 +86,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
     >
       <Link className="h-full cursor-none" href={`/works/${category}`}>
         <video
+          onLoadedData={handleVideoLoaded}
           ref={videoRef}
           muted
           loop
@@ -99,7 +105,9 @@ const GridVideo: React.FC<GridVideoProps> = ({
       </section>
       <div
         className={`pointer-events-none absolute top-0 left-0 h-full w-full ease-in-out duration-500 ${
-          isPlaying ? "opacity-0" : !smallScreen && "group-hover:opacity-0"
+          isPlaying && videoLoaded
+            ? "opacity-0"
+            : !smallScreen && "group-hover:opacity-0"
         }`}
       >
         <Parallax
