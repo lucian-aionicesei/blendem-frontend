@@ -32,14 +32,14 @@ function Map() {
 
   return (
     <main className="flex pt-20 xl:pt-0 flex-col gap-y-16">
-      <section className="sm:mx-5 md:mx-14 mb-12 lg:mb-16 xl:grid grid-cols-12 h-screen items-center">
+      <section className="sm:mx-5 md:mx-14 mb-12 lg:mb-16 xl:grid grid-cols-12 xl:h-screen items-center">
         <article className="px-5 py-20 sm:px-0 text-base col-start-1 col-span-4 flex flex-col justify-center">
           <ContactCard
             location="Parcul Industrial Sfantu Gheorghe Cart. Campul Frumos nr.5 520072"
             email="contact@blendemproduction.com"
           />
         </article>
-        <div className=" col-span-6 col-end-12 aspect-video">
+        <div className=" col-span-6 col-end-12 aspect-video xl:aspect-[5/4]">
           <GoogleMap
             id="2ab65ca5eadc5cfb"
             zoom={16}

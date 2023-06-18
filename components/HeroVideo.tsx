@@ -115,7 +115,7 @@ const HeroVideo = ({
           alt="video reel"
         ></Image>
         {categoryVideo && (
-          <article className=" group text-5xl sm:text-7xl uppercase font-extrabold bg-black/60 px-10 flex items-center justify-center relative overflow-hidden w-full sm:w-auto">
+          <article className=" group text-5xl sm:text-7xl uppercase font-extrabold backdrop-blur-sm bg-black/30 px-10 flex items-center justify-center relative overflow-hidden w-full sm:w-auto">
             <h1
               className={`h-full py-7 ease-in-out duration-300 ${
                 showAnimation ? "translate-y-0" : "-translate-y-full"

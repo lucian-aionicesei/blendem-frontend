@@ -89,9 +89,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
         ></video>
       </Link>
       <section className=" absolute bottom-0 w-full flex lg:hidden justify-between items-center p-5 sm:p-8 overflow-hidden">
-        <p className={`uppercase font-extrabold text-xl sm:text-3xl`}>
-          {category}
-        </p>
+        <p className={`uppercase font-bold text-xl sm:text-3xl`}>{category}</p>
         <Link
           className="border-2 border-project-green sm:py-2 px-2 sm:px-5 text-sm sm:text-base"
           href={`/works/${category}`}
