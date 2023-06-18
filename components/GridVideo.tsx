@@ -36,6 +36,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
   };
 
   const handleVideoLoaded = () => {
+    console.log("The video has been loaded");
     setVideoLoaded(true);
   };
 
@@ -86,7 +87,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
     >
       <Link className="h-full cursor-none" href={`/works/${category}`}>
         <video
-          onLoadedData={handleVideoLoaded}
+          onCanPlayThrough={handleVideoLoaded}
           ref={videoRef}
           muted
           loop
