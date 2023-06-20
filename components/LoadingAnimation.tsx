@@ -1,32 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LoadingContext } from "./AppContext";
 
 const LoadingAnimation = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const context = useContext(LoadingContext);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-
+    console.log("Context almighty:", context.isLoading);
     setIsLoaded(true);
+    document.body.style.overflow = "hidden";
 
     // Run after 3 seconds
     const timer = setTimeout(() => {
+      context.setIsLoading(false);
       document.body.style.overflow = "auto";
+      console.log("Context after 3sec:", context.isLoading);
     }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
+
   return (
     <div className="fixed h-screen w-full top-0 left-0 z-[100] flex items-center justify-center pointer-events-none">
       <div className="relative w-full h-full">
         <div
           className={`${
-            isLoaded ? " -translate-y-full" : "translate-y-0"
-          } ease-in-out duration-500 delay-[2000ms] absolute top-0 left-0 w-full h-full bg-project-black`}
+            isLoaded && !context.isLoading
+              ? " -translate-y-full"
+              : "translate-y-0"
+          } ease-in-out duration-500 delay-[500ms] absolute top-0 left-0 w-full h-full bg-project-black`}
         ></div>
         <div
           className={`${
-            isLoaded ? " -translate-y-full" : "translate-y-0"
-          } ease-in-out duration-500 delay-[1500ms] w-full h-full flex flex-col bg-project-dark-black items-center justify-center gap-y-3 md:gap-y-5`}
+            isLoaded && !context.isLoading
+              ? " -translate-y-full"
+              : "translate-y-0"
+          } ease-in-out duration-500 w-full h-full flex flex-col bg-project-dark-black items-center justify-center gap-y-3 md:gap-y-5`}
         >
           <div
             className={`flex gap-x-2 duration-500 ease-in-out ${
