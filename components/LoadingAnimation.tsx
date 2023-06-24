@@ -1,23 +1,32 @@
 import React, { useState, useEffect, useContext } from "react";
 import { LoadingContext } from "./AppContext";
+import { useRouter } from "next/router";
 
 const LoadingAnimation = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const context = useContext(LoadingContext);
+  const router = useRouter();
+  const currentPath = router.pathname;
 
   useEffect(() => {
-    console.log("Context almighty:", context.isLoading);
     setIsLoaded(true);
-    document.body.style.overflow = "hidden";
 
-    // Run after 3 seconds
     const timer = setTimeout(() => {
-      context.setIsLoading(false);
-      document.body.style.overflow = "auto";
-      console.log("Context after 3sec:", context.isLoading);
-    }, 3000);
+      document.body.style.overflow = "hidden";
+    }, 100);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (currentPath !== "/" || !currentPath.includes(`works/[slug]`)) {
+      const timer = setTimeout(() => {
+        context.setIsLoading(false);
+        document.body.style.overflow = "auto";
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
@@ -35,7 +44,7 @@ const LoadingAnimation = () => {
             isLoaded && !context.isLoading
               ? " -translate-y-full"
               : "translate-y-0"
-          } ease-in-out duration-500 w-full h-full flex flex-col bg-project-dark-black items-center justify-center gap-y-3 md:gap-y-5`}
+          } pointer-events-auto ease-in-out duration-500 w-full h-full flex flex-col bg-project-dark-black items-center justify-center gap-y-3 md:gap-y-5`}
         >
           <div
             className={`flex gap-x-2 duration-500 ease-in-out ${

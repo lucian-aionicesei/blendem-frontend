@@ -21,7 +21,6 @@ const GridVideo: React.FC<GridVideoProps> = ({
   const videoElement = videoRef.current;
   const [smallScreen, setSmallScreen] = useState(false);
   const screenWidth = useScreenWidth();
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const handleArticleEnter = () => {
     if (!smallScreen) {
@@ -100,9 +99,7 @@ const GridVideo: React.FC<GridVideoProps> = ({
       </section>
       <div
         className={`pointer-events-none absolute top-0 left-0 h-full w-full ease-in-out duration-500 ${
-          isPlaying && videoLoaded
-            ? "opacity-0"
-            : !smallScreen && "group-hover:opacity-0"
+          isPlaying ? "opacity-0" : !smallScreen && "group-hover:opacity-0"
         }`}
       >
         <Parallax
