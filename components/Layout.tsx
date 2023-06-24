@@ -1,13 +1,20 @@
 import Header from "./Header";
+import LoadingAnimation from "./LoadingAnimation";
 import SiteFooter from "./SiteFooter";
+import React, { useState } from "react";
+
+const LoadingContext = React.createContext(true);
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <div>
+    <LoadingContext.Provider value={isLoading}>
+      <LoadingAnimation />
       <Header />
       {children}
       <SiteFooter />
-    </div>
+    </LoadingContext.Provider>
   );
 };
 

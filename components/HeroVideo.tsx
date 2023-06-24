@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import Image from "next/image";
+import { LoadingContext } from "./AppContext";
 
 const HeroVideo = ({
   categoryVideo,
@@ -11,9 +12,22 @@ const HeroVideo = ({
   const [showAnimation, setShowAnimation] = useState(false);
   const [phoneScreen, setPhoneScreen] = useState(false);
   const [playVideo, setPlayVideo] = useState(true);
+  const [dataIsFetched, setDataIsFetched] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const visibilityThreshold = useRef(0);
   const pauseTimeout = useRef<NodeJS.Timeout | null>(null);
+  const context = useContext(LoadingContext);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (dataIsFetched) {
+        context.setIsLoading(false);
+        document.body.style.overflow = "auto";
+      }
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
