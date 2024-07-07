@@ -9,7 +9,7 @@ const containerStyle = {
 
 const Works = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDh6GMI6kD43oT_zpAf81n0q16i75h-GP8",
+    googleMapsApiKey: "google-api-key",
   });
 
   if (!isLoaded) return <div>Loading...</div>;
