@@ -55,16 +55,6 @@ const About = () => {
     { imgUrl: "/logos/lego.png", name: "Partner logo" },
     { imgUrl: "/logos/netflix.png", name: "Partner logo" },
     { imgUrl: "/logos/volvo.png", name: "Partner logo" },
-    { imgUrl: "/logos/coca-cola.png", name: "Partner logo" },
-    { imgUrl: "/logos/lego.png", name: "Partner logo" },
-    { imgUrl: "/logos/netflix.png", name: "Partner logo" },
-    { imgUrl: "/logos/volvo.png", name: "Partner logo" },
-    { imgUrl: "/logos/coca-cola.png", name: "Partner logo" },
-    { imgUrl: "/logos/lego.png", name: "Partner logo" },
-    { imgUrl: "/logos/netflix.png", name: "Partner logo" },
-    { imgUrl: "/logos/volvo.png", name: "Partner logo" },
-    { imgUrl: "/logos/coca-cola.png", name: "Partner logo" },
-    { imgUrl: "/logos/lego.png", name: "Partner logo" },
   ];
 
   return (

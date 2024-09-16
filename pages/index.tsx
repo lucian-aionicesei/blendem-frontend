@@ -25,7 +25,7 @@ export default function Home() {
       />
       <SliderElement slides={sliderContent} />
       <section className="mx-5 md:mx-14 mb-12 lg:mb-16 lg:grid grid-cols-12">
-        <article className=" text-base col-start-4 col-end-10 bg-project-dark-gray text-white p-8 sm:p-12 flex flex-col gap-y-2">
+        <article className=" text-base col-start-4 col-end-10 bg-project-dark-gray text-white p-5 sm:p-12 flex flex-col gap-y-2">
           <ContactCard
             location="Parcul Industrial Sfantu Gheorghe Cart. Campul Frumos nr.5 520072"
             email="contact@blendemproduction.com"
